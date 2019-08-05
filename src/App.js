@@ -5,6 +5,7 @@ import 'jquery';
 import 'popper.js';
 import 'bootstrap';
 import MainNavbar from './components/navbar/main-navbar'
+import AlmaInput from './components/elements/main/alma'
 
 function App() {
   return (
@@ -12,8 +13,12 @@ function App() {
     <div className="App">
       <MainNavbar />
 
-      <main role="main" class="container-fluid">
+      <main role="main" className="container-fluid">
           <h1>Bootstrap starter template</h1>
+
+          <br />
+          <AlmaInput />
+
       </main>
 
     </div>
