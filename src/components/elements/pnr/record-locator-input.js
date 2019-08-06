@@ -6,9 +6,9 @@ class RecordLocatorInput extends React.Component {
         return (
 
             <div className="form-group row">
-                <label htmlFor="recordLocatorInput" className="col-sm-2 col-form-label">Record locator</label>
-                <div className="col-sm-10">
-                    <input className="form-control" id="recordLocatorInput" />
+                <label htmlFor="RecordLocatorInput0" className="col-sm-2 col-form-label">Record locator</label>
+                <div className="col-sm-4">
+                    <input className="form-control" id="RecordLocatorInput0" />
                 </div>
             </div>
 

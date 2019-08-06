@@ -5,7 +5,7 @@ import 'jquery';
 import 'popper.js';
 import 'bootstrap';
 import MainNavbar from './components/navbar/main-navbar'
-import PnrViewer from './components/elements/pnr-viewer'
+import PnrEditor from './components/elements/pnr-editor'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <MainNavbar />
       <main role="main" className="container-fluid">
-        <PnrViewer />
+        <PnrEditor />
       </main>
     </div>
 

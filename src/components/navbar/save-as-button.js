@@ -12,11 +12,9 @@ class SaveAsButton extends React.Component {
     render() {
         return (
 
-            <div className="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" className="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Save as...
-                </button>
-                <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <div>
+                <a className="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Save as...</a>
+                <div className="dropdown-menu" aria-labelledby="dropdown02">
                     <a className="dropdown-item" href="#" onClick={this.saveAsClick}>JSON</a>
                 </div>
             </div>
