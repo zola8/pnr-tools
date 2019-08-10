@@ -1,6 +1,5 @@
 import React from 'react';
-import SaveAsButton from './save-as-button';
-import LoadAsButton from './load-as-button';
+import pnr from '../../App-data';
 
 class MainNavbar extends React.Component {
 
@@ -11,20 +10,19 @@ class MainNavbar extends React.Component {
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-
-                <div className="collapse navbar-collapse" id="navbarsMain">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item dropdown">
-                            <LoadAsButton />
-                        </li>
-                        <li className="nav-item dropdown">
-                            <SaveAsButton />
-                        </li>
-                    </ul>
+                <div>
+                    <button className="btn btn-primary" onClick={ this.logPnr.bind(this) }>
+                        log pnr
+                    </button>
                 </div>
             </nav>
         );
     }
+
+    logPnr(e) {
+        console.log("-- pnr: ", pnr);
+    };
+
 }
 
 export default MainNavbar;

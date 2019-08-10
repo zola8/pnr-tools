@@ -8,7 +8,7 @@ const pnr = {
     canceled: true,
     operating: false,
     allotment: true,
-    oRespOff: "D",
+    oRespOff: null,
     oPosCnty: "E",
     oPosCity: "F",
     oPosCrs: "G",
