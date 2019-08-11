@@ -33,11 +33,17 @@ class PnrViewerTableRow extends React.Component {
         if (typeof data === "boolean") {
             if (data)
                 return (
-                    <span className="badge badge-pill badge-success">true</span>
+                    <div className="form-group form-check mb-0">
+                        <input type="checkbox" class="form-check-input" checked />
+                        <label className="form-check-label text-success">true</label>
+                    </div>
                 );
             else
                 return (
-                    <span className="badge badge-pill badge-danger">false</span>
+                    <div className="form-group form-check mb-0">
+                        <input type="checkbox" class="form-check-input" disabled="disabled" />
+                        <label className="form-check-label text-danger">false</label>
+                    </div>
                 );
         }
 

@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <MainNavbar />
       <main role="main" className="container">
-        <PnrViewer />
+        <PnrEditor />
       </main>
     </div>
 

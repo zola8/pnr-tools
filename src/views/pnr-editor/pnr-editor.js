@@ -10,16 +10,27 @@ class PnrEditor extends React.Component {
         this.state = {
             pnr: pnr
         };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     render() {
         return (
 
-            <div>
-                <GeneralInput label="crsId" id="crsId0" data={this.state.pnr.crsId} />
+            <div className="row mt-3">
+                <div className="col-md-12">
+                    <GeneralInput label="crsId" data={this.state.pnr.crsId} onChange={this.handleChange.bind(this)} />
+
+
+                </div>
             </div>
 
         );
+    }
+
+    handleChange(e) {
+        this.setState({ pnr: e.target.value });
+        console.log(this.state.pnr);
     }
 
 }

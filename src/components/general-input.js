@@ -14,10 +14,9 @@ class GeneralInput extends React.Component {
         return (
 
             <div className="form-group row">
-                <label htmlFor={this.props.id} className="col-sm-2 col-form-label">{this.props.label}</label>
-                <div className="col-sm-4">
+                <label className="col-sm-3 col-form-label">{this.props.label}</label>
+                <div className="col-sm-9">
                     <input className="form-control"
-                        id={this.props.id}
                         value={this.state.data}
                         onChange={this.handleChange.bind(this)}
                     />
@@ -27,8 +26,9 @@ class GeneralInput extends React.Component {
         );
     }
 
-    handleChange(e) {
-        this.setState({ data: e.target.value });
+    handleChange(event) {
+        this.setState({ data: event.target.value });
+        console.log(this.props.label + " = " + this.state.data);
     }
 }
 
