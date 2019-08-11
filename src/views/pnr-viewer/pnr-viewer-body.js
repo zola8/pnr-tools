@@ -23,6 +23,12 @@ class PnrViewerBody extends React.Component {
         return (
             <div className="row justify-content-md-center">
                 <table className="table table-hover table-striped table-sm">
+                    <thead className="thead-dark">
+                        <tr>
+                            <th scope="col">PNR BODY</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {this.state.hideNulls && pnr.crsId == null ? null :
                             <PnrViewerTableRow label="crsId" data={pnr.crsId} info={pnrInfo} />
@@ -74,6 +80,12 @@ class PnrViewerBody extends React.Component {
                         }
                         {this.state.hideNulls && pnr.extendedFirstDepartureUTC == null ? null :
                             <PnrViewerTableRow label="extendedFirstDepartureUTC" data={pnr.extendedFirstDepartureUTC} info={pnrInfo} />
+                        }
+                        {this.state.hideNulls && pnr.eotDate == null ? null :
+                            <PnrViewerTableRow label="eotDate" data={pnr.eotDate} info={pnrInfo} />
+                        }
+                        {this.state.hideNulls && pnr.crsVersionNumber == null ? null :
+                            <PnrViewerTableRow label="crsVersionNumber" data={pnr.crsVersionNumber} info={pnrInfo} />
                         }
                     </tbody>
                 </table>

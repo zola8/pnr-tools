@@ -34,14 +34,14 @@ class PnrViewerTableRow extends React.Component {
             if (data)
                 return (
                     <div className="form-group form-check mb-0">
-                        <input type="checkbox" class="form-check-input" checked />
+                        <input type="checkbox" className="form-check-input" defaultChecked />
                         <label className="form-check-label text-success">true</label>
                     </div>
                 );
             else
                 return (
                     <div className="form-group form-check mb-0">
-                        <input type="checkbox" class="form-check-input" disabled="disabled" />
+                        <input type="checkbox" className="form-check-input" disabled="disabled" />
                         <label className="form-check-label text-danger">false</label>
                     </div>
                 );

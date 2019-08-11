@@ -11,7 +11,7 @@ class HideNull extends React.Component {
 
     render() {
         return (
-            <div className="row col-md-12">
+            <div className="row">
                 <div className="alert alert-dark" role="alert">
                     <input type="checkbox" className="big-checkbox align-middle" onClick={this.hideNullsEvent} />  Hide null values
                 </div>
