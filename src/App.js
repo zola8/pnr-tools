@@ -13,12 +13,8 @@ function App() {
 
     <div className="App">
       <MainNavbar />
-      <main role="main" className="container-fluid">
+      <main role="main" className="container">
         <PnrViewer />
-
-
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><hr/>
-        <PnrEditor />
       </main>
     </div>
 

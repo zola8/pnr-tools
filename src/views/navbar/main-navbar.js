@@ -1,5 +1,5 @@
 import React from 'react';
-import pnr from '../../App-data';
+import pnr from '../../App-data-pnr';
 
 class MainNavbar extends React.Component {
 

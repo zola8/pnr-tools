@@ -1,34 +1,8 @@
-const pnr = {
-    crsId: "1A",
-    recordLocator: "B",
-    creationDate: "yyyyMMdd HHmm",
-    creationDateTime: "yyyyMMdd HHmm",
-    commencePoint: "C",
-    nonCommercial: false,
-    canceled: true,
-    operating: false,
-    allotment: true,
-    oRespOff: null,
-    oPosCnty: "E",
-    oPosCity: "F",
-    oPosCrs: "G",
-    lastArrivalUTC: "yyyyMMdd HHmm",
-    extendedLastArrivalUTC: "yyyyMMdd HHmm",
-    firstDepartureUTC: "yyyyMMdd HHmm",
-    extendedFirstDepartureUTC: "yyyyMMdd HHmm",
-    pnrKeys: [],
-    respo: null,
-    group: null,
-    names: [],
-    segments: [],
-    osis: [],
-    remarks: [],
-    contacts: [],
-    ssrs: [],
-    sks: [],
-    tickets: [],
-    deletedSegmentDescriptors: [],
-    eotOriginator: null
+const pnrInfo = {
+    crsId: "CRS ID",
+    oRespOff: "something office",
+    oPosCnty: "something country",
+    oPosCity: "something city"
 }
 
-export default pnr
+export default pnrInfo
