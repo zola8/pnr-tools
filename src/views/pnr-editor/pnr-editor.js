@@ -1,6 +1,6 @@
 import React from 'react';
 import GeneralInput from '../../components/general-input'
-import pnr from '../../App-data'
+import pnr from '../../App-data-pnr'
 
 class PnrEditor extends React.Component {
 

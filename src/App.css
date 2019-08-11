@@ -2,6 +2,7 @@ main {
     padding-top: 5rem;
 }
 
-.badgeRight {
-    margin-left: 1em;
+.big-checkbox {
+    width:  20px;
+    height: 20px;
 }

@@ -15,7 +15,7 @@ class PnrViewerTableRow extends React.Component {
                     <th scope="row" className="w-50">
                         {this.props.label}
                         {this.tooltip &&
-                            <span className="badge badge-pill badge-info badgeRight" title={this.tooltip}>?</span>
+                            <span className="badge badge-pill badge-info ml-3" title={this.tooltip}>?</span>
                         }
                     </th>
                     <td>
