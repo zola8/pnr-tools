@@ -1,6 +1,6 @@
 import React from 'react';
 import GeneralInput from '../../components/general-input'
-import pnr from '../../App-data-pnr'
+import p  from '../../App-data-pnr'
 
 class PnrEditor extends React.Component {
 
@@ -19,7 +19,9 @@ class PnrEditor extends React.Component {
 
             <div className="row mt-3">
                 <div className="col-md-12">
-                    <GeneralInput label="crsId" data={this.state.pnr.crsId} onChange={this.handleChange.bind(this)} />
+                    <GeneralInput label="crsId" data={this.state.pnr.crsId} 
+                        onChange={(e) => this.handleChange('crsId', e.target.value)} />
+                    <GeneralInput label="alma" data={this.state.pnr.alma} onChange={this.handleChange.bind(this)} />
 
 
                 </div>
@@ -28,9 +30,8 @@ class PnrEditor extends React.Component {
         );
     }
 
-    handleChange(e) {
-        this.setState({ pnr: e.target.value });
-        console.log(this.state.pnr);
+    handleChange(label, value) {
+        pnr[label] = value;
     }
 
 }

@@ -8,18 +8,14 @@ class PnrViewerBody extends React.Component {
     constructor(props) {
         super(props);
 
-        this.props = {
+        this.state = {
             pnr: pnr,
             pnrInfo: pnrInfo
         };
-
-        this.state = {
-            hideNulls: false
-        }
-
     }
 
     render() {
+        console.log(Object.keys(pnr))
         return (
             <div className="row justify-content-md-center">
                 <table className="table table-hover table-striped table-sm">
@@ -30,61 +26,63 @@ class PnrViewerBody extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.hideNulls && pnr.crsId == null ? null :
+
+
+                        {this.props.shouldHideNulls && pnr.crsId == null ? null :
                             <PnrViewerTableRow label="crsId" data={pnr.crsId} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.recordLocator == null ? null :
+                        {this.props.shouldHideNulls && pnr.recordLocator == null ? null :
                             <PnrViewerTableRow label="recordLocator" data={pnr.recordLocator} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.creationDate == null ? null :
+                        {this.props.shouldHideNulls && pnr.creationDate == null ? null :
                             <PnrViewerTableRow label="creationDate" data={pnr.creationDate} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.creationDateTime == null ? null :
+                        {this.props.shouldHideNulls && pnr.creationDateTime == null ? null :
                             <PnrViewerTableRow label="creationDateTime" data={pnr.creationDateTime} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.commencePoint == null ? null :
+                        {this.props.shouldHideNulls && pnr.commencePoint == null ? null :
                             <PnrViewerTableRow label="commencePoint" data={pnr.commencePoint} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.nonCommercial == null ? null :
+                        {this.props.shouldHideNulls && pnr.nonCommercial == null ? null :
                             <PnrViewerTableRow label="nonCommercial" data={pnr.nonCommercial} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.canceled == null ? null :
+                        {this.props.shouldHideNulls && pnr.canceled == null ? null :
                             <PnrViewerTableRow label="canceled" data={pnr.canceled} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.operating == null ? null :
+                        {this.props.shouldHideNulls && pnr.operating == null ? null :
                             <PnrViewerTableRow label="operating" data={pnr.operating} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.allotment == null ? null :
+                        {this.props.shouldHideNulls && pnr.allotment == null ? null :
                             <PnrViewerTableRow label="allotment" data={pnr.allotment} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.oRespOff == null ? null :
+                        {this.props.shouldHideNulls && pnr.oRespOff == null ? null :
                             <PnrViewerTableRow label="oRespOff" data={pnr.oRespOff} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.oPosCnty == null ? null :
+                        {this.props.shouldHideNulls && pnr.oPosCnty == null ? null :
                             <PnrViewerTableRow label="oPosCnty" data={pnr.oPosCnty} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.oPosCity == null ? null :
+                        {this.props.shouldHideNulls && pnr.oPosCity == null ? null :
                             <PnrViewerTableRow label="oPosCity" data={pnr.oPosCity} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.oPosCrs == null ? null :
+                        {this.props.shouldHideNulls && pnr.oPosCrs == null ? null :
                             <PnrViewerTableRow label="oPosCrs" data={pnr.oPosCrs} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.lastArrivalUTC == null ? null :
+                        {this.props.shouldHideNulls && pnr.lastArrivalUTC == null ? null :
                             <PnrViewerTableRow label="lastArrivalUTC" data={pnr.lastArrivalUTC} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.extendedLastArrivalUTC == null ? null :
+                        {this.props.shouldHideNulls && pnr.extendedLastArrivalUTC == null ? null :
                             <PnrViewerTableRow label="extendedLastArrivalUTC" data={pnr.extendedLastArrivalUTC} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.firstDepartureUTC == null ? null :
+                        {this.props.shouldHideNulls && pnr.firstDepartureUTC == null ? null :
                             <PnrViewerTableRow label="firstDepartureUTC" data={pnr.firstDepartureUTC} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.extendedFirstDepartureUTC == null ? null :
+                        {this.props.shouldHideNulls && pnr.extendedFirstDepartureUTC == null ? null :
                             <PnrViewerTableRow label="extendedFirstDepartureUTC" data={pnr.extendedFirstDepartureUTC} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.eotDate == null ? null :
+                        {this.props.shouldHideNulls && pnr.eotDate == null ? null :
                             <PnrViewerTableRow label="eotDate" data={pnr.eotDate} info={pnrInfo} />
                         }
-                        {this.state.hideNulls && pnr.crsVersionNumber == null ? null :
+                        {this.props.shouldHideNulls && pnr.crsVersionNumber == null ? null :
                             <PnrViewerTableRow label="crsVersionNumber" data={pnr.crsVersionNumber} info={pnrInfo} />
                         }
                     </tbody>

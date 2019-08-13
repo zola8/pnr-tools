@@ -1,5 +1,5 @@
 const pnrKey = {
-    fileKey: "aaa",
+    fileKey: null,
     crsId: "ABC123"
 }
 

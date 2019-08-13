@@ -8,19 +8,18 @@ class PnrViewerKeys extends React.Component {
     constructor(props) {
         super(props);
 
-        this.props = {
+        this.state = {
             pnr: pnr,
             pnrInfo: pnrInfo
         };
-
-        this.state = {
-            hideNulls: false
-        }
     }
 
     render() {
         return (
             <div>
+
+
+
                 {this.createSections()}
             </div>
         );
@@ -48,10 +47,16 @@ class PnrViewerKeys extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.hideNulls && pnrkey.fileKey == null ? null :
+
+{Object.keys(pnr.pnrKeys).map(key => {
+    return this.props.shouldHideNulls && pnr[key] == null ? null :
+    (<PnrViewerTableRow label={key} data={pnr[key]} info={pnrInfo} />);
+})}
+
+                        {this.props.shouldHideNulls && pnrkey.fileKey == null ? null :
                             <PnrViewerTableRow label="fileKey" data={pnrkey.fileKey} info={pnrInfo.pnrKeys} />
                         }
-                        {this.state.hideNulls && pnrkey.crsId == null ? null :
+                        {this.props.shouldHideNulls && pnrkey.crsId == null ? null :
                             <PnrViewerTableRow label="crsId" data={pnrkey.crsId} info={pnrInfo.pnrKeys} />
                         }
                     </tbody>
