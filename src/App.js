@@ -4,21 +4,10 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'jquery';
 import 'popper.js';
 import 'bootstrap';
-import MainNavbar from './views/navbar/main-navbar'
-import PnrEditor from './views/pnr-editor/pnr-editor'
-import PnrViewer from './views/pnr-viewer/pnr-viewer'
+import AppContainer from './AppContainer'
 
-function App() {
-  return (
-
-    <div className="App">
-      <MainNavbar />
-      <main role="main" className="container">
-        <PnrEditor />
-      </main>
-    </div>
-
-  );
+export default function App() {
+	return (
+		<AppContainer />
+	);
 }
-
-export default App;

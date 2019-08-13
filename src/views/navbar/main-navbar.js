@@ -1,5 +1,4 @@
 import React from 'react';
-import pnr from '../../App-data-pnr';
 
 class MainNavbar extends React.Component {
 
@@ -20,7 +19,7 @@ class MainNavbar extends React.Component {
     }
 
     logPnr(e) {
-        console.log("-- pnr: ", pnr);
+        console.log("-- pnr: ");
     };
 
 }
