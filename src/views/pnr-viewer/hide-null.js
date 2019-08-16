@@ -11,7 +11,8 @@ class HideNull extends React.Component {
                         className="big-checkbox align-middle"
                         onClick={() => this.props.setHideNulls()}
                         value={this.props.shouldHideNulls}
-                    />  Hide null values
+                    />
+                    <span className="ml-3">Hide null values</span>
                 </div>
             </div>
         );

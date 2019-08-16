@@ -18,8 +18,8 @@ class MainNavbar extends React.Component {
         );
     }
 
-    logPnr(e) {
-        console.log("-- pnr: ");
+    logPnr(event) {
+        console.log("-- pnr: ", this.props.pnr);
     };
 
 }
