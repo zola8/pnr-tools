@@ -1,6 +1,7 @@
 import React from 'react';
 import HideNull from './hide-null'
 import PnrViewerBody from './pnr-viewer-body'
+import PnrViewerKeys from './pnr-viewer-keys'
 
 class PnrViewer extends React.Component {
 
@@ -13,8 +14,6 @@ class PnrViewer extends React.Component {
     }
 
     render() {
-        console.log(this.state.hideNulls);
-
         return (
             <div>
                 <HideNull
@@ -23,10 +22,14 @@ class PnrViewer extends React.Component {
                 />
                 <PnrViewerBody
                     shouldHideNulls={this.state.hideNulls}
-                    pnr={this.props.pnr}
+                    data={this.props.pnr}
                     pnrinfo={this.props.pnrinfo}
                 />
-
+                <PnrViewerKeys
+                    shouldHideNulls={this.state.hideNulls}
+                    data={this.props.pnr.pnrKeys}
+                    pnrinfo={this.props.pnrinfo}
+                />
             </div>
         );
     }

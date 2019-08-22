@@ -60,9 +60,19 @@ export default class AppContainer extends React.Component {
                 "firstDepartureUTC": rawpnr.firstDepartureUTC,
                 "extendedFirstDepartureUTC": rawpnr.extendedFirstDepartureUTC,
                 "eotDate": rawpnr.eotDate,
-                "crsVersionNumber": rawpnr.crsVersionNumber,
-            }
+                "crsVersionNumber": rawpnr.crsVersionNumber
+            },
+            pnrKeys: []
         }
+
+        rawpnr.pnrKeys.forEach(item => {
+            let newItem = {
+                "fileKey": item.fileKey,
+                "crsId": item.crsId
+            };
+
+            result.pnrKeys.push(newItem);
+        });
 
         return result;
     }

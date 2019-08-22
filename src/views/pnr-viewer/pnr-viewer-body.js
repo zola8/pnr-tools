@@ -14,18 +14,16 @@ class PnrViewerBody extends React.Component {
 						</tr>
 					</thead>
 					<tbody>
-
-						{Object.keys(this.props.pnr.body).map(key => {
-							return this.props.shouldHideNulls && this.props.pnr.body[key] == null ?
+						{Object.keys(this.props.data.body).map((key, index) => {
+							return this.props.shouldHideNulls && this.props.data.body[key] == null ?
 								null :
 								(<PnrViewerTableRow
-									key={key + "_" + "0"}
+									key={'PnrViewerBody_' + key + '_' + index}
 									label={key}
-									data={this.props.pnr.body[key]}
+									data={this.props.data.body[key]}
 									info={this.props.pnrinfo} />
 								);
 						})}
-
 					</tbody>
 				</table>
 			</div>

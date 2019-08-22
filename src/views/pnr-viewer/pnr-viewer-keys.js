@@ -1,44 +1,34 @@
 import React from 'react';
-import pnr from '../../App-data-pnr'
-import pnrInfo from '../../App-data-pnr-info'
 import PnrViewerTableRow from './pnr-viewer-table-row'
 
 class PnrViewerKeys extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            pnr: pnr,
-            pnrInfo: pnrInfo
-        };
-    }
-
     render() {
         return (
             <div>
-
-
-
                 {this.createSections()}
             </div>
         );
     }
 
     createSections = () => {
-        let section = []
-
-        // TODO globalis valtozobol?? cserelni this.props-ra
-        for (const pnrkey of pnr.pnrKeys) {
-            section.push(this.renderTable(pnrkey))
+        if (!this.props.data) {
+            console.log('No pnrKeys found.');
+            return null;
         }
 
-        return section
+        let section = [];
+
+        for (const [index, pnrkey] of this.props.data.entries()) {
+            section.push(this.renderTable(pnrkey, index))
+        }
+
+        return section;
     }
 
-    renderTable = (pnrkey) => {
+    renderTable = (pnrkey, index) => {
         return (
-            <div className="row justify-content-md-center">
+            <div className="row justify-content-md-center" key={'PnrViewerKeys_div_' + index}>
                 <table className="table table-hover table-striped table-sm">
                     <thead className="thead-dark">
                         <tr>
@@ -47,18 +37,16 @@ class PnrViewerKeys extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-
-{Object.keys(pnr.pnrKeys).map(key => {
-    return this.props.shouldHideNulls && pnr[key] == null ? null :
-    (<PnrViewerTableRow label={key} data={pnr[key]} info={pnrInfo} />);
-})}
-
-                        {this.props.shouldHideNulls && pnrkey.fileKey == null ? null :
-                            <PnrViewerTableRow label="fileKey" data={pnrkey.fileKey} info={pnrInfo.pnrKeys} />
-                        }
-                        {this.props.shouldHideNulls && pnrkey.crsId == null ? null :
-                            <PnrViewerTableRow label="crsId" data={pnrkey.crsId} info={pnrInfo.pnrKeys} />
-                        }
+                        {Object.keys(pnrkey).map((key) => {
+                            return this.props.shouldHideNulls && pnrkey[key] == null ?
+                                null :
+                                (<PnrViewerTableRow
+                                    key={'PnrViewerKeys_' + key + '_' + index}
+                                    label={key}
+                                    data={pnrkey[key]}
+                                    info={this.props.pnrinfo.pnrKeys} />
+                                );
+                        })}
                     </tbody>
                 </table>
             </div>
