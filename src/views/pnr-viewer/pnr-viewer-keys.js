@@ -4,6 +4,10 @@ import PnrViewerTableRow from './pnr-viewer-table-row'
 class PnrViewerKeys extends React.Component {
 
     render() {
+        if (!this.props.data) {
+            return null;
+        }
+
         return (
             <div>
                 {this.createSections()}
@@ -12,11 +16,6 @@ class PnrViewerKeys extends React.Component {
     }
 
     createSections = () => {
-        if (!this.props.data) {
-            console.log('No pnrKeys found.');
-            return null;
-        }
-
         let section = [];
 
         for (const [index, pnrkey] of this.props.data.entries()) {

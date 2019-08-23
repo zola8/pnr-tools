@@ -2,154 +2,199 @@
     "crsId": "1A",
     "recordLocator": "B",
     "creationDate": "yyyyMMdd HHmm",
-    "creationDateTime": "yyyyMMdd HHmm",
+    "eotDate": "yyyyMMdd HHmm",
     "commencePoint": "C",
     "nonCommercial": false,
     "canceled": true,
     "operating": false,
-    "allotment": true,
-    "oRespOff": null,
-    "oPosCnty": "E",
-    "oPosCity": "F",
-    "oPosCrs": "G",
-    "lastArrivalUTC": null,
-    "extendedLastArrivalUTC": null,
-    "firstDepartureUTC": null,
-    "extendedFirstDepartureUTC": null,
-    "eotDate": "yyyyMMdd HHmm",
     "crsVersionNumber": 0,
     "pnrKeys": [
         {
-            "fileKey": null,
-            "crsId": "ABC123"
+            "crsId": "ABC123",
+            "fileKey": null
         },
         {
-            "fileKey": null,
-            "crsId": "ASD234"
+            "crsId": "ASD234",
+            "fileKey": "filekey"
         }
     ],
+    "eotOriginator": {
+        "eotAuthRequest": "",
+        "eotCity": "",
+        "eotCountry": "",
+        "eotCrs": "",
+        "eotIataNumber": "",
+        "eotInHouse": "",
+        "eotOffice": "",
+        "eotOrigType": ""
+    },
     "respo": {
-        "tattoo": "id-0",
-        "posCrs": "",
-        "pccIataNumber": "",
-        "posCity": "",
-        "posCountry": "",
-        "respoOffice": ""
+        "pccIataNumber": "IATA1",
+        "posCity": "BUD",
+        "posCountry": "HU",
+        "posCrs": "1A",
+        "respoOffice": "ABC"
     },
     "group": {
-        "tattoo": "id-1",
         "groupName": "",
         "groupCount": 2,
         "numberOfNames": 3,
-        "numberOfOriginalBooked": 1
+        "groupFields": [
+            {
+                "groupFieldText": "aaa",
+                "groupFieldType": "bb"
+            }
+        ]
     },
     "names": [
         {
-            "tattoo": "id-21",
-            "firstName": "",
-            "lastName": "",
-            "elementNumber": 1
-        },
-        {
-            "tattoo": "id-22",
-            "firstName": "",
-            "lastName": "",
-            "elementNumber": 1
+            "dateOfBirth": "",
+            "firstName": "Jolan",
+            "gender": "Female",
+            "infantDateOfBirth": "",
+            "infantFirstName": "",
+            "infantGender": "",
+            "infantLastName": "",
+            "infantRedressNo": "",
+            "lastName": "Nagy",
+            "paxType": "ADT",
+            "redressNo": "",
+            "title": "Miss"
         }
     ],
     "segments": [
         {
-            "tattoo": "id-3",
+            "actionCode": "",
             "airlineCode": "LX",
-            "flightNumber": 500,
-            "origin": "BUD",
-            "dest": "FRA",
-            "dep": "yyyyMMdd HHmm",
-            "depDW": 1,
-            "depUTC": "yyyyMMdd HHmm",
-            "arr": "yyyyMMdd HHmm",
-            "arrUTC": "yyyyMMdd HHmm",
-            "bookingClass": "C",
-            "openSeg": false,
+            "allotment": true,
             "arnk": false,
+            "arrival": "",
+            "bookingClass": "C",
+            "cabinClass": "",
+            "codeshare": "",
+            "codeshareAirlineCode": "LH",
+            "codeshareBookingClass": "X",
+            "codeshareFlightNumber": "500LX",
+            "departure": "",
+            "destination": "FRA",
+            "flightNumber": 510,
+            "flightSuffix": "",
+            "flown": false,
             "infoSegment": false,
-            "actionCodeCategory": "HK",
-            "actionCode": "HK",
-            "refAirOp": false,
-            "cShare": false,
-            "cShareAC": "LH",
-            "cShareFN": 600,
-            "cShareBC": "M",
-            "numberOfSeats": 40,
-            "allotment": false,
-            "swissEBC": "",
-            "marriageGroup": ""
+            "marriageGroup": "",
+            "numberOfSeats": 80,
+            "openSeg": false,
+            "origin": "BUD",
+            "swissEBC": ""
         }
     ],
     "osis": [
         {
-            "tattoo": "id-4",
             "airlineCode": "LX",
             "osiType": "",
-            "osiText": ""
+            "osiText": "",
+            "paxTattoos": [
+                "a1",
+                "a2"
+            ],
+            "segmentTattoos": [
+                "s1",
+                "s2"
+            ]
         }
     ],
     "remarks": [
         {
-            "tattoo": "id-5",
-            "remarkType": "SAVE | CONF | SPL | TTL | STD",
+            "designatedOffice1": "",
+            "designatedOffice2": "",
+            "designatedOffice3": "",
+            "extendFlag1": "",
+            "extendFlag2": "",
+            "extendFlag3": "",
+            "paxTattoos": [
+                "p1",
+                "p2"
+            ],
+            "remarkCategory": "",
             "remarkText": "",
-            "creatingOffice": "",
-            "remarkCategory": ""
+            "remarkType": "STD, SAVE, CONF, SPL, TTL, CT, TF, EX, AI, AN, NR",
+            "segmentTattoos": [
+                "s1",
+                "s2"
+            ],
+            "writeFlag1": false,
+            "writeFlag2": false,
+            "writeFlag3": false
         }
-        
     ],
     "contacts": [
         {
-            "tattoo": "id-6",
-            "type": "DEFAULT, EMAIL, FAX, HOME, BUSINESS, MOBILE, TRAVELAGENT",
-            "text": ""
+            "contactText": "",
+            "contactType": "DEFAULT, EMAIL, FAX, HOME, BUSINESS, MOBILE, TRAVELAGENT, INTERNET, NOTIFICATION",
+            "paxTattoos": [
+                "p1",
+                "p2"
+            ]
+        }
+    ],
+    "addresses": [
+        {
+            "addressType": "DEFAULT, MAILING, BILLING",
+            "city": "BUD",
+            "company": "LHG",
+            "country": "HU",
+            "name": "",
+            "paxTattoos": [
+                "p1",
+                "p2"
+            ],
+            "poBox": "",
+            "state": "",
+            "street1": "",
+            "street2": "",
+            "zipCode": ""
         }
     ],
     "ssrs": [
         {
-            "tattoo": "id-7",
-            "airlineCode": "LX",
-            "ssrType": "",
-            "ssrText": "",
             "actionCode": "",
-            "chargeable": true
+            "airlineCode": "LX",
+            "chargeable": true,
+            "paxTattoos": [
+                "p1",
+                "p2"
+            ],
+            "requestQuantity": 1,
+            "segmentTattoos": [
+                "s1",
+                "s2"
+            ],
+            "specialRequirementData": "",
+            "ssrText": "",
+            "ssrType": ""
         }
     ],
     "sks": [
         {
-            "tattoo": "id-8",
+            "actionCode": "",
             "airlineCode": "LX",
-            "skType": "",
+            "paxTattoos": [
+                "p1",
+                "p2"
+            ],
+            "requestQuantity": 1,
+            "segmentTattoos": [
+                "s1",
+                "s2"
+            ],
             "skText": "",
-            "actionCode": ""
+            "skType": ""
         }
     ],
-    "tickets": [
-        {
-            "tattoo": "id-9",
-            "airNum": "500",
-            "docNum": "",
-            "paxType": "ADL",
-            "elementType": "",
-            "iInd": "issueIndicator",
-            "conjNum": "conjunctionNumber"
-        }
-    ],
-    "deletedSegmentDescriptors": [
-        {
-            "origin": "BUD",
-            "dest": "FRA",
-            "airlineCode": "LX",
-            "flightNumber": 500,
-            "flightSuffix": "A",
-            "depDate": "yyyyMMdd HHmm",
-            "numberOfDeletions": 3
-        }
-    ]
+    "tickets": [],
+    "formOfPayments": [],
+    "dcsDataList": [],
+    "tourCode": {
+        "freeText": ""
+    }
 }

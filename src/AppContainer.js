@@ -14,13 +14,10 @@ export default class AppContainer extends React.Component {
             pnrinfo: null
         }
 
-        this.loadPnr(this.state);
+        this.loadJsonPnr(this.state);
     }
 
     render() {
-        console.log("pnr: ", this.state.pnr);
-        console.log("pnrinfo: ", this.state.pnrinfo);
-
         return (
             <div className="App">
                 <MainNavbar pnr={this.state.pnr} />
@@ -34,36 +31,27 @@ export default class AppContainer extends React.Component {
         );
     }
 
-    loadPnr = (state) => {
-        state.pnr = this.buildPnrBody(rawpnr);
+    loadJsonPnr = (state) => {
+        state.pnr = this.buildPnr(rawpnr);
         state.pnrinfo = pnrinfo;
     }
 
-    buildPnrBody = (rawpnr) => {
+    buildPnr = (rawpnr) => {
         let result = {
             body: {
                 "crsId": rawpnr.crsId,
                 "recordLocator": rawpnr.recordLocator,
                 "creationDate": rawpnr.creationDate,
-                "creationDateTime": rawpnr.creationDateTime,
+                "eotDate": rawpnr.eotDate,
                 "commencePoint": rawpnr.commencePoint,
                 "nonCommercial": rawpnr.nonCommercial,
                 "canceled": rawpnr.canceled,
                 "operating": rawpnr.operating,
-                "allotment": rawpnr.allotment,
-                "oRespOff": rawpnr.oRespOff,
-                "oPosCnty": rawpnr.oPosCnty,
-                "oPosCity": rawpnr.oPosCity,
-                "oPosCrs": rawpnr.oPosCrs,
-                "lastArrivalUTC": rawpnr.lastArrivalUTC,
-                "extendedLastArrivalUTC": rawpnr.extendedLastArrivalUTC,
-                "firstDepartureUTC": rawpnr.firstDepartureUTC,
-                "extendedFirstDepartureUTC": rawpnr.extendedFirstDepartureUTC,
-                "eotDate": rawpnr.eotDate,
                 "crsVersionNumber": rawpnr.crsVersionNumber
-            },
-            pnrKeys: []
+            }
         }
+
+        result.pnrKeys = [];
 
         rawpnr.pnrKeys.forEach(item => {
             let newItem = {
@@ -72,6 +60,41 @@ export default class AppContainer extends React.Component {
             };
 
             result.pnrKeys.push(newItem);
+        });
+
+        result.eotOriginator = {
+            "eotAuthRequest": rawpnr.eotOriginator.eotAuthRequest,
+            "eotCity": rawpnr.eotOriginator.eotCity,
+            "eotCountry": rawpnr.eotOriginator.eotCountry,
+            "eotCrs": rawpnr.eotOriginator.eotCrs,
+            "eotIataNumber": rawpnr.eotOriginator.eotIataNumber,
+            "eotInHouse": rawpnr.eotOriginator.eotInHouse,
+            "eotOffice": rawpnr.eotOriginator.eotOffice,
+            "eotOrigType": rawpnr.eotOriginator.eotOrigType
+        };
+
+        result.respo = {
+            "pccIataNumber": rawpnr.respo.pccIataNumber,
+            "posCity": rawpnr.respo.posCity,
+            "posCountry": rawpnr.respo.posCountry,
+            "posCrs": rawpnr.respo.posCrs,
+            "respoOffice": rawpnr.respo.respoOffice
+        }
+
+        result.group = {
+            "groupName": rawpnr.group.groupName,
+            "groupCount": rawpnr.group.groupCount,
+            "numberOfNames": rawpnr.group.numberOfNames,
+            "groupFields": []
+        }
+        
+        rawpnr.group.groupFields.forEach(item => {
+            let newItem = {
+                "groupFieldText": item.groupFieldText,
+                "groupFieldType": item.groupFieldType
+            };
+
+            result.group.groupFields.push(newItem);
         });
 
         return result;

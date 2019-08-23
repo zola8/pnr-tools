@@ -5,5 +5,8 @@
     "oPosCity": "something city",
     "pnrKeys": {
         "fileKey": "file key??"
+    },
+    "eotOriginator": {
+        "eotAuthRequest": "aaaa"
     }
 }
