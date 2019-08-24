@@ -51,9 +51,9 @@ export default class AppContainer extends React.Component {
             }
         }
 
-        result.pnrKeys = [];
-
         if (rawpnr.pnrKeys) {
+            result.pnrKeys = [];
+
             rawpnr.pnrKeys.forEach(item => {
                 let newItem = {
                     "fileKey": item.fileKey,
@@ -105,6 +105,62 @@ export default class AppContainer extends React.Component {
                     result.group.groupFields.push(newItem);
                 });
             }
+        }
+
+        if (rawpnr.names) {
+            result.names = [];
+
+            rawpnr.names.forEach(item => {
+                let newItem = {
+                    "dateOfBirth": item.dateOfBirth,
+                    "firstName": item.firstName,
+                    "gender": item.gender,
+                    "infantDateOfBirth": item.infantDateOfBirth,
+                    "infantFirstName": item.infantFirstName,
+                    "infantGender": item.infantGender,
+                    "infantLastName": item.infantLastName,
+                    "infantRedressNo": item.infantRedressNo,
+                    "lastName": item.lastName,
+                    "paxType": item.paxType,
+                    "redressNo": item.redressNo,
+                    "title": item.title
+                };
+
+                result.names.push(newItem);
+            });
+        }
+
+        if (rawpnr.segments) {
+            result.segments = [];
+
+            rawpnr.segments.forEach(item => {
+                let newItem = {
+                    "actionCode": item.actionCode,
+                    "airlineCode": item.airlineCode,
+                    "allotment": item.allotment,
+                    "arnk": item.arnk,
+                    "arrival": item.arrival,
+                    "bookingClass": item.bookingClass,
+                    "cabinClass": item.cabinClass,
+                    "codeshare": item.codeshare,
+                    "codeshareAirlineCode": item.codeshareAirlineCode,
+                    "codeshareBookingClass": item.codeshareBookingClass,
+                    "codeshareFlightNumber": item.codeshareFlightNumber,
+                    "departure": item.departure,
+                    "destination": item.destination,
+                    "flightNumber": item.flightNumber,
+                    "flightSuffix": item.flightSuffix,
+                    "flown": item.flown,
+                    "infoSegment": item.infoSegment,
+                    "marriageGroup": item.marriageGroup,
+                    "numberOfSeats": item.numberOfSeats,
+                    "openSeg": item.openSeg,
+                    "origin": item.origin,
+                    "swissEBC": item.swissEBC
+                };
+
+                result.segments.push(newItem);
+            });
         }
 
         return result;

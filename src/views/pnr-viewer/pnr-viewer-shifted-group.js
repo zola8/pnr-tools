@@ -1,15 +1,19 @@
 import React from 'react';
 import PnrViewerSimpleGroup from './pnr-viewer-simple-group'
+import PnrViewerArray from './pnr-viewer-array'
+import PnrViewerTableRow from './pnr-viewer-table-row';
+
 
 class PnrViewerShiftedGroup extends React.Component {
 
 	render() {
-		return (
+        if (!this.props.data) {
+            return null;
+        }
+
+        return (
 			<React.Fragment>
 				<tr>
-					<th scope="row" className="w-50">
-						{this.props.title}
-					</th>
 					<td>
 						{
 							this.props.data.forEach(function (item, index) {
@@ -21,8 +25,9 @@ class PnrViewerShiftedGroup extends React.Component {
 					</td>
 				</tr>
 			</React.Fragment>
-		);
+        );
 	}
+	
 
 }
 
