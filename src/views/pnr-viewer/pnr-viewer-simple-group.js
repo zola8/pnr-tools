@@ -1,6 +1,6 @@
 import React from 'react';
 import PnrViewerTableRow from './pnr-viewer-table-row';
-import PnrViewerShiftedGroup from './pnr-viewer-shifted-group';
+import PnrViewerMultipleTableRow from './pnr-viewer-multiple-table-row';
 
 class PnrViewerSimpleGroup extends React.Component {
 
@@ -21,10 +21,11 @@ class PnrViewerSimpleGroup extends React.Component {
 
 							if (Array.isArray(this.props.data[key])) {
 								return (
-									<PnrViewerShiftedGroup
+									<PnrViewerMultipleTableRow
 										key={this.props.keydata + '_' + key + '_' + index}
-										title={key}
 										data={this.props.data[key]}
+										keydata={key}
+										parentkeydata={this.props.keydata + '_' + key + '_' + index}
 									/>
 								);
 							}

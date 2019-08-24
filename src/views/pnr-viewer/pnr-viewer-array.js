@@ -18,14 +18,14 @@ class PnrViewerArray extends React.Component {
     createSections = () => {
         let section = [];
 
-        for (const [index, pnrkey] of this.props.data.entries()) {
-            section.push(this.renderTable(pnrkey, index))
+        for (const [index, array] of this.props.data.entries()) {
+            section.push(this.renderTable(array, index))
         }
 
         return section;
     }
 
-    renderTable = (pnrkey, index) => {
+    renderTable = (array, index) => {
         return (
             <div key={this.props.keydata + '_main_' + index}>
                 <span className="badge badge-secondary">#{index}</span>
@@ -33,14 +33,14 @@ class PnrViewerArray extends React.Component {
                 <div className="justify-content-md-center" key={'PnrViewerArray_div_' + index}>
                     <table className="table table-hover table-striped table-sm">
                         <tbody>
-                            {Object.keys(pnrkey).map((key) => {
-                                return this.props.shouldHideNulls && pnrkey[key] == null ?
+                            {Object.keys(array).map((key) => {
+                                return this.props.shouldHideNulls && array[key] == null ?
                                     null :
                                     (<PnrViewerTableRow
                                         key={this.props.keydata + '_main_' + index + '_' + key}
                                         label={key}
-                                        data={pnrkey[key]}
-                                        info={this.props.pnrinfo.pnrKeys} />
+                                        data={array[key]}
+                                    />
                                     );
                             })}
                         </tbody>
