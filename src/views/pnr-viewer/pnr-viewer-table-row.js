@@ -11,7 +11,7 @@ class PnrViewerTableRow extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<tr className={this.props.addClass}>
+				<tr>
 					<th scope="row" className="w-50">
 						{this.props.label}
 						{this.tooltip &&

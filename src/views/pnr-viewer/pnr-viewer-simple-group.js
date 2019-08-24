@@ -1,5 +1,6 @@
 import React from 'react';
 import PnrViewerTableRow from './pnr-viewer-table-row';
+import PnrViewerShiftedGroup from './pnr-viewer-shifted-group';
 
 class PnrViewerSimpleGroup extends React.Component {
 
@@ -9,24 +10,32 @@ class PnrViewerSimpleGroup extends React.Component {
 		}
 
 		return (
-			<div className="row justify-content-md-center">
+			<div className="col-12 justify-content-md-center">
 				<table className="table table-hover table-striped table-sm">
-					<thead className="thead-dark">
-						<tr>
-							<th scope="col">{this.props.title}</th>
-							<th scope="col"></th>
-						</tr>
-					</thead>
 					<tbody>
 						{Object.keys(this.props.data).map((key, index) => {
-							return this.props.shouldHideNulls && this.props.data[key] == null ?
-								null :
-								(<PnrViewerTableRow
+
+							if (this.props.shouldHideNulls && this.props.data[key] == null) {
+								return null;
+							}
+
+							if (Array.isArray(this.props.data[key])) {
+								return (
+									<PnrViewerShiftedGroup
+										key={this.props.keydata + '_' + key + '_' + index}
+										title={key}
+										data={this.props.data[key]}
+									/>
+								);
+							}
+
+							return (
+								<PnrViewerTableRow
 									key={this.props.keydata + '_' + key + '_' + index}
 									label={key}
 									data={this.props.data[key]}
 									info={this.props.pnrinfo} />
-								);
+							);
 						})}
 					</tbody>
 				</table>

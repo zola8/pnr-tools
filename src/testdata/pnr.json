@@ -2,7 +2,7 @@
     "crsId": "1A",
     "recordLocator": "B",
     "creationDate": "yyyyMMdd HHmm",
-    "eotDate": "yyyyMMdd HHmm",
+    "eotDate": null,
     "commencePoint": "C",
     "nonCommercial": false,
     "canceled": true,
@@ -43,6 +43,10 @@
             {
                 "groupFieldText": "aaa",
                 "groupFieldType": "bb"
+            },
+            {
+                "groupFieldText": null,
+                "groupFieldType": "nnn"
             }
         ]
     },

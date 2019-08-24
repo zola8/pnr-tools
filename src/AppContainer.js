@@ -53,49 +53,59 @@ export default class AppContainer extends React.Component {
 
         result.pnrKeys = [];
 
-        rawpnr.pnrKeys.forEach(item => {
-            let newItem = {
-                "fileKey": item.fileKey,
-                "crsId": item.crsId
-            };
+        if (rawpnr.pnrKeys) {
+            rawpnr.pnrKeys.forEach(item => {
+                let newItem = {
+                    "fileKey": item.fileKey,
+                    "crsId": item.crsId
+                };
 
-            result.pnrKeys.push(newItem);
-        });
-
-        result.eotOriginator = {
-            "eotAuthRequest": rawpnr.eotOriginator.eotAuthRequest,
-            "eotCity": rawpnr.eotOriginator.eotCity,
-            "eotCountry": rawpnr.eotOriginator.eotCountry,
-            "eotCrs": rawpnr.eotOriginator.eotCrs,
-            "eotIataNumber": rawpnr.eotOriginator.eotIataNumber,
-            "eotInHouse": rawpnr.eotOriginator.eotInHouse,
-            "eotOffice": rawpnr.eotOriginator.eotOffice,
-            "eotOrigType": rawpnr.eotOriginator.eotOrigType
-        };
-
-        result.respo = {
-            "pccIataNumber": rawpnr.respo.pccIataNumber,
-            "posCity": rawpnr.respo.posCity,
-            "posCountry": rawpnr.respo.posCountry,
-            "posCrs": rawpnr.respo.posCrs,
-            "respoOffice": rawpnr.respo.respoOffice
+                result.pnrKeys.push(newItem);
+            });
         }
 
-        result.group = {
-            "groupName": rawpnr.group.groupName,
-            "groupCount": rawpnr.group.groupCount,
-            "numberOfNames": rawpnr.group.numberOfNames,
-            "groupFields": []
-        }
-        
-        rawpnr.group.groupFields.forEach(item => {
-            let newItem = {
-                "groupFieldText": item.groupFieldText,
-                "groupFieldType": item.groupFieldType
+        if (rawpnr.eotOriginator) {
+            result.eotOriginator = {
+                "eotAuthRequest": rawpnr.eotOriginator.eotAuthRequest,
+                "eotCity": rawpnr.eotOriginator.eotCity,
+                "eotCountry": rawpnr.eotOriginator.eotCountry,
+                "eotCrs": rawpnr.eotOriginator.eotCrs,
+                "eotIataNumber": rawpnr.eotOriginator.eotIataNumber,
+                "eotInHouse": rawpnr.eotOriginator.eotInHouse,
+                "eotOffice": rawpnr.eotOriginator.eotOffice,
+                "eotOrigType": rawpnr.eotOriginator.eotOrigType
             };
+        }
 
-            result.group.groupFields.push(newItem);
-        });
+        if (rawpnr.respo) {
+            result.respo = {
+                "pccIataNumber": rawpnr.respo.pccIataNumber,
+                "posCity": rawpnr.respo.posCity,
+                "posCountry": rawpnr.respo.posCountry,
+                "posCrs": rawpnr.respo.posCrs,
+                "respoOffice": rawpnr.respo.respoOffice
+            }
+        }
+
+        if (rawpnr.group) {
+            result.group = {
+                "groupName": rawpnr.group.groupName,
+                "groupCount": rawpnr.group.groupCount,
+                "numberOfNames": rawpnr.group.numberOfNames,
+                "groupFields": []
+            }
+
+            if (rawpnr.group.groupFields) {
+                rawpnr.group.groupFields.forEach(item => {
+                    let newItem = {
+                        "groupFieldText": item.groupFieldText,
+                        "groupFieldType": item.groupFieldType
+                    };
+
+                    result.group.groupFields.push(newItem);
+                });
+            }
+        }
 
         return result;
     }
