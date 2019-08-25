@@ -163,6 +163,28 @@ export default class AppContainer extends React.Component {
             });
         }
 
+        if (rawpnr.osis) {
+            result.osis = [];
+
+            rawpnr.osis.forEach(item => {
+                let newItem = {
+                    "airlineCode": item.airlineCode,
+                    "osiType": item.osiType,
+                    "osiText": item.osiText
+                };
+
+                if (item.paxTattoos) {
+                    newItem.paxTattoos = item.paxTattoos;
+                }
+
+                if (item.segmentTattoos) {
+                    newItem.segmentTattoos = item.segmentTattoos;
+                }
+
+                result.osis.push(newItem);
+            });
+        }
+
         return result;
     }
 

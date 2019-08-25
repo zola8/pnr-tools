@@ -105,6 +105,19 @@
                 "s1",
                 "s2"
             ]
+        },
+        {
+            "airlineCode": "LH",
+            "osiType": null,
+            "osiText": null,
+            "paxTattoos": [
+                "a3",
+                "a4"
+            ],
+            "segmentTattoos": [
+                "s3",
+                "s4"
+            ]
         }
     ],
     "remarks": [

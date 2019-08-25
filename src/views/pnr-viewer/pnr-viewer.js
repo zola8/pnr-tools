@@ -124,6 +124,20 @@ class PnrViewer extends React.Component {
                     />
                 </div>
 
+                <div className="row mt-3">
+                    <a className="col-12 btn btn-outline-dark square" data-toggle="collapse" href="#collapse_osis" role="button" aria-expanded="false" aria-controls="collapse_osis">
+                        OSIS
+                    </a>
+                </div>
+                <div className="row collapse show multi-collapse-view" id="collapse_osis">
+                    <PnrViewerArray
+                        shouldHideNulls={this.state.hideNulls}
+                        keydata="osis"
+                        data={this.props.pnr.osis}
+                        pnrinfo={this.props.pnrinfo}
+                    />
+                </div>
+
             </div>
         );
     }
