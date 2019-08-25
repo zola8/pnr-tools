@@ -1,6 +1,14 @@
 import React from 'react';
+import jsontoxml from 'jsontoxml'
 
 class MainNavbar extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.saveJsonToBrowser = this.saveJsonToBrowser.bind(this);
+        this.saveXmlToBrowser = this.saveXmlToBrowser.bind(this);
+        this.logPnr = this.logPnr.bind(this);
+    }
 
     render() {
         return (
@@ -10,17 +18,47 @@ class MainNavbar extends React.Component {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div>
-                    <button className="btn btn-primary" onClick={ this.logPnr.bind(this) }>
-                        log pnr
-                    </button>
+
+                    <div className="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Save as...
+                        </button>
+                        <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a className="dropdown-item" href="#" onClick={this.logPnr}>log internal pnr</a>
+                            <a className="dropdown-item" href="#" onClick={this.saveJsonToBrowser}>.json</a>
+                            <a className="dropdown-item" href="#" onClick={this.saveXmlToBrowser}>.xml</a>
+                        </div>
+                    </div>
+
                 </div>
             </nav>
         );
     }
 
-    logPnr(event) {
-        console.log("-- pnr: ", this.props.pnr);
-    };
+    logPnr = () => {
+        console.log("pnr: ", this.props.pnr);
+    }
+
+    saveJsonToBrowser = () => {
+        const jsonData = this.props.pnr;
+        const fileData = JSON.stringify(jsonData);
+        const blob = new Blob([fileData], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = 'pnr.json';
+        link.href = url;
+        link.click();
+    }
+
+    saveXmlToBrowser = () => {
+        const xmlData = jsontoxml(this.props.pnr);
+        const blob = new Blob([xmlData], { type: "text/xml" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = 'pnr.xml';
+        link.href = url;
+        link.click();
+    }
 
 }
 
