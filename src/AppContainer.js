@@ -3,6 +3,7 @@ import MainNavbar from './views/navbar/main-navbar'
 import rawpnr from './testdata/pnr.json';
 import pnrinfo from './testdata/pnrinfo.json';
 import PnrViewer from './views/pnr-viewer/pnr-viewer';
+import ShowPnr from './views/show-pnr/show-pnr';
 
 export default class AppContainer extends React.Component {
 
@@ -22,10 +23,16 @@ export default class AppContainer extends React.Component {
             <div className="App">
                 <MainNavbar pnr={this.state.pnr} />
                 <main role="main" className="container">
+                    <ShowPnr
+                        data={this.state.pnr}
+                    />
+
+                    {/*
                     <PnrViewer
                         pnr={this.state.pnr}
                         pnrinfo={this.state.pnrinfo}
                     />
+                    */}
                 </main>
             </div>
         );
@@ -38,17 +45,19 @@ export default class AppContainer extends React.Component {
 
     buildPnr = (rawpnr) => {
         let result = {
-            body: {
-                "crsId": rawpnr.crsId,
-                "recordLocator": rawpnr.recordLocator,
-                "creationDate": rawpnr.creationDate,
-                "eotDate": rawpnr.eotDate,
-                "commencePoint": rawpnr.commencePoint,
-                "nonCommercial": rawpnr.nonCommercial,
-                "canceled": rawpnr.canceled,
-                "operating": rawpnr.operating,
-                "crsVersionNumber": rawpnr.crsVersionNumber
-            }
+            "crsId": rawpnr.crsId,
+            "recordLocator": rawpnr.recordLocator,
+            "pnrKeys": null,
+            "creationDate": rawpnr.creationDate,
+            "eotDate": rawpnr.eotDate,
+            "eotOriginator": null,
+            "commencePoint": rawpnr.commencePoint,
+            "nonCommercial": rawpnr.nonCommercial,
+            "canceled": rawpnr.canceled,
+            "operating": rawpnr.operating,
+            "respo": null,
+            "group": null,
+            "crsVersionNumber": rawpnr.crsVersionNumber
         }
 
         if (rawpnr.pnrKeys) {

@@ -1,13 +1,6 @@
 {
     "crsId": "1A",
     "recordLocator": "B",
-    "creationDate": "yyyyMMdd HHmm",
-    "eotDate": null,
-    "commencePoint": "C",
-    "nonCommercial": false,
-    "canceled": true,
-    "operating": false,
-    "crsVersionNumber": 0,
     "pnrKeys": [
         {
             "crsId": "ABC123",
@@ -18,6 +11,8 @@
             "fileKey": "filekey"
         }
     ],
+    "creationDate": "yyyyMMdd HHmm",
+    "eotDate": null,
     "eotOriginator": {
         "eotAuthRequest": "",
         "eotCity": "",
@@ -28,6 +23,10 @@
         "eotOffice": "",
         "eotOrigType": ""
     },
+    "commencePoint": "C",
+    "nonCommercial": false,
+    "canceled": true,
+    "operating": false,
     "respo": {
         "pccIataNumber": "IATA1",
         "posCity": "BUD",
@@ -50,6 +49,7 @@
             }
         ]
     },
+    "crsVersionNumber": 0,
     "names": [
         {
             "dateOfBirth": "",
