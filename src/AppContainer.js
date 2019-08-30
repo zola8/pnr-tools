@@ -1,6 +1,6 @@
 import React from 'react';
 import MainNavbar from './views/navbar/main-navbar'
-import rawpnr from './testdata/pnr.json';
+import rawpnr from './testdata/pnr2.json';
 import pnrinfo from './testdata/pnrinfo.json';
 import PnrViewer from './views/pnr-viewer/pnr-viewer';
 import ShowPnr from './views/show-pnr/show-pnr';
@@ -47,16 +47,12 @@ export default class AppContainer extends React.Component {
         let result = {
             "crsId": rawpnr.crsId,
             "recordLocator": rawpnr.recordLocator,
-            "pnrKeys": null,
             "creationDate": rawpnr.creationDate,
             "eotDate": rawpnr.eotDate,
-            "eotOriginator": null,
             "commencePoint": rawpnr.commencePoint,
             "nonCommercial": rawpnr.nonCommercial,
             "canceled": rawpnr.canceled,
             "operating": rawpnr.operating,
-            "respo": null,
-            "group": null,
             "crsVersionNumber": rawpnr.crsVersionNumber
         }
 

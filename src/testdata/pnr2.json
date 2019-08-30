@@ -1,3 +1,30 @@
 {
-    "crsId": "1A"
+    "osis": [
+        {
+            "airlineCode": "LX",
+            "osiType": "",
+            "osiText": "",
+            "paxTattoos": [
+                "a1",
+                "a2"
+            ],
+            "segmentTattoos": [
+                "s1",
+                "s2"
+            ]
+        },
+        {
+            "airlineCode": "LH",
+            "osiType": null,
+            "osiText": null,
+            "paxTattoos": [
+                "a3",
+                "a4"
+            ],
+            "segmentTattoos": [
+                "s3",
+                "s4"
+            ]
+        }
+    ]
 }
