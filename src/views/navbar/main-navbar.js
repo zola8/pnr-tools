@@ -17,19 +17,27 @@ class MainNavbar extends React.Component {
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div>
 
-                    <div className="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div>
+                    <div className="btn-group ml-3" role="group">
+                        <button id="btnGroupDropLoad" type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Load...
+                        </button>
+                        <div className="dropdown-menu" aria-labelledby="btnGroupDropLoad">
+                            <a className="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalLong">call modal</a>
+                        </div>
+                    </div>
+
+                    <div className="btn-group ml-3" role="group">
+                        <button id="btnGroupDropSave" type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Save as...
                         </button>
-                        <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <div className="dropdown-menu" aria-labelledby="btnGroupDropSave">
                             <a className="dropdown-item" href="#" onClick={this.logPnr}>log internal pnr</a>
                             <a className="dropdown-item" href="#" onClick={this.saveJsonToBrowser}>.json</a>
                             <a className="dropdown-item" href="#" onClick={this.saveXmlToBrowser}>.xml</a>
                         </div>
                     </div>
-
                 </div>
             </nav>
         );

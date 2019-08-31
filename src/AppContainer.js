@@ -2,8 +2,8 @@ import React from 'react';
 import MainNavbar from './views/navbar/main-navbar'
 import rawpnr from './testdata/pnr.json';
 import pnrinfo from './testdata/pnrinfo.json';
-import PnrViewer from './views/pnr-viewer/pnr-viewer';
 import ShowPnr from './views/show-pnr/show-pnr';
+import Modal from './views/modal';
 
 export default class AppContainer extends React.Component {
 
@@ -27,12 +27,7 @@ export default class AppContainer extends React.Component {
                         data={this.state.pnr}
                     />
 
-                    {/*
-                    <PnrViewer
-                        pnr={this.state.pnr}
-                        pnrinfo={this.state.pnrinfo}
-                    />
-                    */}
+                    <Modal />
                 </main>
             </div>
         );

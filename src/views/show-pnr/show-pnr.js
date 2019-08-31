@@ -49,8 +49,17 @@ export default class ShowPnr extends React.Component {
                         entries.push(this.renderRow(parentkey, key, value, indent))
                         break;
                     case DataValue._ARRAY:
-                        entries.push(this.renderRow(parentkey, key, value, indent))
-                        entries.push(this.createEntriesFromArray(value, indent + 1, parentkey + '_' + key))
+                        let contentRow1 = this.renderRow(parentkey, key, value, indent);
+                        let objectEntries1 = this.createEntriesFromArray(value, indent + 1, parentkey + '_' + key);
+                        let content1 = (<div> {contentRow1} {objectEntries1} </div>);
+                        let collapseDiv1 = (<RenderCollapse title={key} content={content1} collapseid={'collapse_' + key} key={'collapse_' + key} />);
+
+                        if (indent == 0) {
+                            entries.push(collapseDiv1);
+                        } else {
+                            entries.push(contentRow1);
+                            entries.push(objectEntries1);
+                        }
                         break;
                     case DataValue._OBJECT:
                         let contentRow2 = this.renderRow(parentkey, key, value, indent);
