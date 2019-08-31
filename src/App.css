@@ -13,6 +13,6 @@ main {
     -moz-border-radius: 0px;
 }
 
-.nounderline {
+.noUnderline {
     text-decoration: none !important
 }

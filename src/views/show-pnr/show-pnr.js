@@ -3,8 +3,9 @@ import HideNulls from './hide-nulls'
 import DataValue from './data-value'
 import RenderValueBoolean from './render-value-boolean'
 import RenderValueNull from './render-value-null'
-import RenderValueArray from './render-value-array'
-import RenderValueObject from './render-value-object'
+import RenderContent from './render-content'
+import ToggleAllElements from './toggle-all-elements'
+import RenderCollapse from './render-collapse'
 
 export default class ShowPnr extends React.Component {
 
@@ -24,9 +25,10 @@ export default class ShowPnr extends React.Component {
                         shouldHideNulls={this.state.shouldHideNulls}
                         setHideNulls={() => this.setState({ shouldHideNulls: !this.state.shouldHideNulls })}
                     />
+                    <ToggleAllElements />
                 </div>
-
-                {this.createEntriesFromObject(this.props.data, 0, 'ShowPnr')}
+                <RenderCollapse title='PNR' content={this.createEntriesFromObject(this.props.data, 0, 'ShowPnr')} collapseid='collapse_pnr' />
+                <br />
             </div>
         );
     }
@@ -51,8 +53,12 @@ export default class ShowPnr extends React.Component {
                         entries.push(this.createEntriesFromArray(value, indent + 1, parentkey + '_' + key))
                         break;
                     case DataValue._OBJECT:
-                        entries.push(this.renderRow(parentkey, key, value, indent))
-                        entries.push(this.createEntriesFromObject(value, indent + 1, parentkey + '_' + key))
+                        let contentRow2 = this.renderRow(parentkey, key, value, indent);
+                        let objectEntries2 = this.createEntriesFromObject(value, indent + 1, parentkey + '_' + key);
+                        let content2 = (<div> {contentRow2} {objectEntries2} </div>);
+                        let collapseDiv2 = (<RenderCollapse title={key} content={content2} collapseid={'collapse_' + key} key={'collapse_' + key} />);
+
+                        entries.push(collapseDiv2);
                         break;
                 }
             }
@@ -95,10 +101,10 @@ export default class ShowPnr extends React.Component {
                 content = (<RenderValueBoolean data={value} />)
                 break;
             case DataValue._ARRAY:
-                content = (<RenderValueArray />)
+                content = (<div className="text-info">array</div>)
                 break;
             case DataValue._OBJECT:
-                content = (<RenderValueObject />)
+                content = (<div className="text-info">object</div>)
                 break;
             case DataValue._DATA:
                 content = value;
@@ -107,29 +113,14 @@ export default class ShowPnr extends React.Component {
 
         let newKey = key == null ? parentkey : parentkey + '_' + key;
 
-        return this.renderContent(newKey, indent, key, content);
+        return (<RenderContent newKey={newKey} indent={indent} contentFirst={key} contentSecond={content} key={newKey} />);
     }
 
     renderBadge = (parentkey, index, indent) => {
         let newKey = parentkey + '_' + index;
-        let content1 = (<span className='badge badge-pill badge-secondary'>#{index}</span>)
+        let content = (<span className='badge badge-pill badge-secondary'>#{index}</span>)
 
-        return this.renderContent(newKey, indent, content1, null);
-    }
-
-    renderContent = (newKey, indent, contentFirst, contentSecond) => {
-        return (
-            <div className='row border' key={newKey}>
-                <div className='col-6'>
-                    <div className={'col-8 offset-' + indent + ' font-weight-bold'}>
-                        {contentFirst}
-                    </div>
-                </div>
-                <div className='col-6'>
-                    {contentSecond}
-                </div>
-            </div>
-        );
+        return (<RenderContent newKey={newKey} indent={indent} contentFirst={content} contentSecond={null} key={newKey} />);
     }
 
 }
