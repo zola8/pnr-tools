@@ -5,7 +5,6 @@ import RenderValueBoolean from './render-value-boolean'
 import RenderValueNull from './render-value-null'
 import RenderValueArray from './render-value-array'
 import RenderValueObject from './render-value-object'
-import RenderBadge from './render-badge'
 
 export default class ShowPnr extends React.Component {
 
@@ -20,7 +19,7 @@ export default class ShowPnr extends React.Component {
     render() {
         return (
             <div>
-                <div className="row">
+                <div className='row'>
                     <HideNulls
                         shouldHideNulls={this.state.shouldHideNulls}
                         setHideNulls={() => this.setState({ shouldHideNulls: !this.state.shouldHideNulls })}
@@ -49,13 +48,10 @@ export default class ShowPnr extends React.Component {
                         break;
                     case DataValue._ARRAY:
                         entries.push(this.renderRow(parentkey, key, value, indent))
-                        // entries.push(this.renderBadge(key))
-                        // entries.push(this.renderArray())
-                        entries.push(this.createEntriesFromArray(value, indent + 1, key, parentkey + '_' + key))
+                        entries.push(this.createEntriesFromArray(value, indent + 1, parentkey + '_' + key))
                         break;
                     case DataValue._OBJECT:
                         entries.push(this.renderRow(parentkey, key, value, indent))
-                        // entries.push(this.renderObject())
                         entries.push(this.createEntriesFromObject(value, indent + 1, parentkey + '_' + key))
                         break;
                 }
@@ -65,7 +61,7 @@ export default class ShowPnr extends React.Component {
         return entries;
     }
 
-    createEntriesFromArray = (data, indent, key, parentkey) => {
+    createEntriesFromArray = (data, indent, parentkey) => {
         let entries = [];
 
         for (const [index, value] of data.entries()) {
@@ -73,12 +69,13 @@ export default class ShowPnr extends React.Component {
                 case DataValue._NULL:
                 case DataValue._BOOLEAN:
                 case DataValue._DATA:
-                    entries.push(this.renderRow(parentkey, key, value, indent))
+                    entries.push(this.renderRow(parentkey + '_' + index, null, value, indent))
                     break;
                 case DataValue._ARRAY:
+                    // missing in PNRs
                     break;
                 case DataValue._OBJECT:
-                    entries.push(this.renderBadge(index))
+                    entries.push(this.renderBadge(parentkey, index, indent))
                     entries.push(this.createEntriesFromObject(value, indent + 1, parentkey + '_' + index))
                     break;
             }
@@ -92,69 +89,45 @@ export default class ShowPnr extends React.Component {
 
         switch (DataValue.getValueType(value)) {
             case DataValue._NULL:
-                // content = (<RenderValueNull />)
+                content = (<RenderValueNull />)
                 break;
             case DataValue._BOOLEAN:
-                // content = (<RenderValueBoolean data={value} />)
+                content = (<RenderValueBoolean data={value} />)
                 break;
             case DataValue._ARRAY:
-                // content = (<RenderValueArray />)
+                content = (<RenderValueArray />)
                 break;
             case DataValue._OBJECT:
-                // content = (<RenderValueObject />)
+                content = (<RenderValueObject />)
                 break;
             case DataValue._DATA:
-                // content = value;
+                content = value;
                 break;
         }
 
-        content = (parentkey + '_' + key);
+        let newKey = key == null ? parentkey : parentkey + '_' + key;
 
-        return (
-            <div className="row border" key={parentkey + '_' + indent + '_' + key}>
-                <div className={'offset-' + indent}></div>
-                <div className="col font-weight-bold">
-                    {key}
-                </div>
-                <div className="col">
-                    {content}
-                </div>
-            </div>
-        );
+        return this.renderContent(newKey, indent, key, content);
     }
 
-    renderBadge = (key) => {
-        return (
-            <div className="row border" key={'ShowPnr_badge_' + key}>
-                <div className="col-1"></div>
-                <div className="col font-weight-bold">
-                    {key} (badge)
-                </div>
-                <div className="col"></div>
-            </div>
-        );
+    renderBadge = (parentkey, index, indent) => {
+        let newKey = parentkey + '_' + index;
+        let content1 = (<span className='badge badge-pill badge-secondary'>#{index}</span>)
+
+        return this.renderContent(newKey, indent, content1, null);
     }
 
-    renderArray = () => {
+    renderContent = (newKey, indent, contentFirst, contentSecond) => {
         return (
-            <div className="row border">
-                <div className="col-1"></div>
-                <div className="col font-weight-bold">
-                    array
+            <div className='row border' key={newKey}>
+                <div className='col-6'>
+                    <div className={'col-8 offset-' + indent + ' font-weight-bold'}>
+                        {contentFirst}
+                    </div>
                 </div>
-                <div className="col">array</div>
-            </div>
-        );
-    }
-
-    renderObject = (indent) => {
-        return (
-            <div className="row border">
-                <div className="col-1"></div>
-                <div className="col font-weight-bold">
-                    object
+                <div className='col-6'>
+                    {contentSecond}
                 </div>
-                <div className="col">object</div>
             </div>
         );
     }
