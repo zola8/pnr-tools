@@ -36,7 +36,7 @@ export default class ShowPnr extends React.Component {
     createEntriesFromObject = (data, indent, parentkey) => {
         let entries = [];
 
-        Object.keys(data).map((key) => {
+        Object.keys(data).forEach((key) => {
             let value = data[key];
 
             if (this.state.shouldHideNulls && value == null) {
@@ -54,7 +54,7 @@ export default class ShowPnr extends React.Component {
                         let content1 = (<div> {contentRow1} {objectEntries1} </div>);
                         let collapseDiv1 = (<RenderCollapse title={key} content={content1} collapseid={'collapse_' + key} key={'collapse_' + key} />);
 
-                        if (indent == 0) {
+                        if (indent === 0) {
                             entries.push(collapseDiv1);
                         } else {
                             entries.push(contentRow1);
@@ -68,6 +68,8 @@ export default class ShowPnr extends React.Component {
                         let collapseDiv2 = (<RenderCollapse title={key} content={content2} collapseid={'collapse_' + key} key={'collapse_' + key} />);
 
                         entries.push(collapseDiv2);
+                        break;
+                    default:
                         break;
                 }
             }
@@ -92,6 +94,8 @@ export default class ShowPnr extends React.Component {
                 case DataValue._OBJECT:
                     entries.push(this.renderBadge(parentkey, index, indent))
                     entries.push(this.createEntriesFromObject(value, indent + 1, parentkey + '_' + index))
+                    break;
+                default:
                     break;
             }
         }
@@ -118,6 +122,8 @@ export default class ShowPnr extends React.Component {
             case DataValue._DATA:
                 content = value;
                 break;
+            default:
+                    break;
         }
 
         let newKey = key == null ? parentkey : parentkey + '_' + key;

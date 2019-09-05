@@ -1,9 +1,10 @@
 import React from 'react';
 import MainNavbar from './views/navbar/main-navbar'
-import rawpnr from './testdata/pnr.json';
-import pnrinfo from './testdata/pnrinfo.json';
 import ShowPnr from './views/show-pnr/show-pnr';
-import Modal from './views/modal';
+import Modal from './views/modals/modal';
+import rawpnr from './testdata/pnr.json';
+import rawpnr2 from './testdata/pnr2.json';
+import pnrinfo from './testdata/pnrinfo.json';
 
 export default class AppContainer extends React.Component {
 
@@ -16,12 +17,16 @@ export default class AppContainer extends React.Component {
         }
 
         this.loadJsonPnr(this.state);
+        this.setNewPnr = this.setNewPnr.bind(this);
     }
 
     render() {
         return (
             <div className="App">
-                <MainNavbar pnr={this.state.pnr} />
+                <MainNavbar
+                    pnr={this.state.pnr}
+                    setNewPnr={() => this.setNewPnr()}
+                />
                 <main role="main" className="container">
                     <ShowPnr
                         data={this.state.pnr}
@@ -36,6 +41,14 @@ export default class AppContainer extends React.Component {
     loadJsonPnr = (state) => {
         state.pnr = this.buildPnr(rawpnr);
         state.pnrinfo = pnrinfo;
+    }
+
+    setNewPnr = () => {
+        console.log('new pnr...');
+        this.state.pnr = this.buildPnr(rawpnr2);
+
+        // TODO ??? working not well
+        console.log('.......', this.state.pnr);
     }
 
     buildPnr = (rawpnr) => {
