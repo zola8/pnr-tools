@@ -6,6 +6,8 @@ import RenderValueNull from './render-value-null'
 import RenderContent from './render-content'
 import ToggleAllElements from './toggle-all-elements'
 import RenderCollapse from './render-collapse'
+import EmptyPnr from './empty-pnr'
+
 
 export default class ShowPnr extends React.Component {
 
@@ -18,19 +20,27 @@ export default class ShowPnr extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <div className='row'>
-                    <HideNulls
-                        shouldHideNulls={this.state.shouldHideNulls}
-                        setHideNulls={() => this.setState({ shouldHideNulls: !this.state.shouldHideNulls })}
-                    />
-                    <ToggleAllElements />
+        let content;
+
+        if (this.props.data) {
+            content = (
+                <div>
+                    <div className='row'>
+                        <HideNulls
+                            shouldHideNulls={this.state.shouldHideNulls}
+                            setHideNulls={() => this.setState({ shouldHideNulls: !this.state.shouldHideNulls })}
+                        />
+                        <ToggleAllElements />
+                    </div>
+                    <RenderCollapse title='PNR' content={this.createEntriesFromObject(this.props.data, 0, 'ShowPnr')} collapseid='collapse_pnr' disabled />
+                    <br />
                 </div>
-                <RenderCollapse title='PNR' content={this.createEntriesFromObject(this.props.data, 0, 'ShowPnr')} collapseid='collapse_pnr' />
-                <br />
-            </div>
-        );
+            )
+        } else {
+            content = (<EmptyPnr />)
+        }
+
+        return (content);
     }
 
     createEntriesFromObject = (data, indent, parentkey) => {
@@ -123,7 +133,7 @@ export default class ShowPnr extends React.Component {
                 content = value;
                 break;
             default:
-                    break;
+                break;
         }
 
         let newKey = key == null ? parentkey : parentkey + '_' + key;
