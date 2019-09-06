@@ -2,6 +2,7 @@ import React from 'react';
 import MainNavbar from './views/navbar/main-navbar'
 import ShowPnr from './views/show-pnr/show-pnr';
 import Modal from './views/modals/modal';
+import SaveModalContent from './views/modals/modal-content-save'
 import rawpnr from './testdata/pnr.json';
 import { buildPnr } from './common/pnr-operations'
 
@@ -12,7 +13,12 @@ export default class AppContainer extends React.Component {
 
         this.state = {
             pnr: null,
-            modalContent: null
+            modal: {
+                content: null,
+                title: null,
+                button: null
+            },
+            modalCallback: null
         }
     }
 
@@ -29,19 +35,28 @@ export default class AppContainer extends React.Component {
                     <ShowPnr
                         data={this.state.pnr}
                     />
-                    <Modal content={this.state.modalContent} />
+                    <Modal data={this.state.modal} modalCallback={this.state.modalCallback} />
                 </main>
             </div>
         );
     }
 
     menuSaveAs = () => {
-        let newModalContent = (<div>new modal content...</div>)
-        this.setState({modalContent: newModalContent});
-        console.log("--- save as... calling modal with: ", newModalContent);
+        this.setState({
+            modal: {
+                content: (<SaveModalContent />),
+                title: "Save PNR as...",
+                button: "Save"
+            },
+            modalCallback: this.menuSaveAsCallback
+        });
 
         //saveJsonToBrowser(this.props.pnr);
         //saveXmlToBrowser(this.props.pnr);
+    }
+
+    menuSaveAsCallback = (data) => {
+        console.log("--- menuSaveAsCallback.... ", data);
     }
 
 }
