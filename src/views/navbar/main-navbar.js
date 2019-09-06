@@ -5,7 +5,6 @@ export default class MainNavbar extends React.Component {
 
     constructor(props) {
         super(props);
-        this.menuSaveAs = this.menuSaveAs.bind(this);
         this.menuLogToBrowser = this.menuLogToBrowser.bind(this);
     }
 
@@ -26,7 +25,11 @@ export default class MainNavbar extends React.Component {
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown1">
                                 <a className="dropdown-item" href="/#" onClick={() => this.props.setNewPnr()}>New</a>
                                 <a className="dropdown-item" href="/#" onClick={() => this.props.loadJsonPnr()}>Load...</a>
-                                <a className="dropdown-item" href="/#" onClick={this.menuSaveAs}>Save as...</a>
+                                <a className="dropdown-item" href="/#"
+                                    onClick={() => this.props.menuSaveAs()}
+                                    data-toggle="modal" data-target="#commonModal">
+                                    Save as...
+                                </a>
                                 <div className="dropdown-divider"></div>
                                 <a className="dropdown-item" href="/#" onClick={this.menuLogToBrowser}>Log to browser</a>
                             </div>
@@ -43,13 +46,6 @@ export default class MainNavbar extends React.Component {
                 </div>
             </nav>
         );
-    }
-
-    menuSaveAs = () => {
-        console.log("--- save as... ");
-
-        //saveJsonToBrowser(this.props.pnr);
-        //saveXmlToBrowser(this.props.pnr);
     }
 
     menuLogToBrowser = () => {

@@ -14,7 +14,7 @@ export default class Modal extends React.Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            ...
+                            {this.props.content}
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
