@@ -31,7 +31,7 @@ export default class SaveModal extends React.Component {
                         <div className="modal-body">
                             <div className="form-group">
                                 <label htmlFor="SaveModalContentSelect1">File type</label>
-                                <select className="form-control" id="SaveModalContentSelect1" value={this.state.fileType} onChange={this.handleChange}>
+                                <select className="form-control" id="SaveModalContentSelect1" name="fileType" value={this.state.fileType} onChange={this.handleChange}>
                                     <option value="json">.json</option>
                                     <option value="xml">.xml</option>
                                 </select>
@@ -60,7 +60,7 @@ export default class SaveModal extends React.Component {
         this.setState({ minified: event.target.checked })
 
     handleChange = (event) => {
-        this.setState({ fileType: event.target.value });
+        this.setState({[event.target.name]: event.target.value});
     }
 
 }

@@ -42,6 +42,8 @@ export default class AppContainer extends React.Component {
 
     menuSaveAsCallback = (fileType, minified) => {
         console.log("--- menuSaveAsCallback.... ", fileType, minified);
+
+
         //saveJsonToBrowser(this.props.pnr);
         //saveXmlToBrowser(this.props.pnr);
     }
