@@ -1,8 +1,8 @@
 import React from 'react';
 import MainNavbar from './views/navbar/main-navbar'
 import ShowPnr from './views/show-pnr/show-pnr';
-import Modal from './views/modals/modal';
-import SaveModalContent from './views/modals/modal-content-save'
+import SaveModal from './views/modals/save-modal';
+import LoadModal from './views/modals/load-modal';
 import rawpnr from './testdata/pnr.json';
 import { buildPnr } from './common/pnr-operations'
 
@@ -12,13 +12,7 @@ export default class AppContainer extends React.Component {
         super();
 
         this.state = {
-            pnr: null,
-            modal: {
-                content: null,
-                title: null,
-                button: null
-            },
-            modalCallback: null
+            pnr: null
         }
     }
 
@@ -27,36 +21,29 @@ export default class AppContainer extends React.Component {
             <div className="App">
                 <MainNavbar
                     pnr={this.state.pnr}
-                    setNewPnr={() => this.setState({ pnr: null })}
-                    loadJsonPnr={() => this.setState({ pnr: buildPnr(rawpnr) })}
-                    menuSaveAs={() => this.menuSaveAs()}
+                    menuNewCallback={() => this.setState({ pnr: null })}
                 />
                 <main role="main" className="container">
                     <ShowPnr
                         data={this.state.pnr}
                     />
-                    <Modal data={this.state.modal} modalCallback={this.state.modalCallback} />
+
+                    <SaveModal modalCallback={this.menuSaveAsCallback} />
+                    <LoadModal modalCallback={this.menuLoadFromCallback} />
                 </main>
             </div>
         );
     }
 
-    menuSaveAs = () => {
-        this.setState({
-            modal: {
-                content: (<SaveModalContent />),
-                title: "Save PNR as...",
-                button: "Save"
-            },
-            modalCallback: this.menuSaveAsCallback
-        });
-
-        //saveJsonToBrowser(this.props.pnr);
-        //saveXmlToBrowser(this.props.pnr);
+    menuLoadFromCallback = () => {
+        console.log("--- menuLoadFromCallback.... ");
+        //loadJsonPnr={() => this.setState({ pnr: buildPnr(rawpnr) })}
     }
 
-    menuSaveAsCallback = (data) => {
-        console.log("--- menuSaveAsCallback.... ", data);
+    menuSaveAsCallback = (fileType, minified) => {
+        console.log("--- menuSaveAsCallback.... ", fileType, minified);
+        //saveJsonToBrowser(this.props.pnr);
+        //saveXmlToBrowser(this.props.pnr);
     }
 
 }

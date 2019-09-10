@@ -23,13 +23,9 @@ export default class MainNavbar extends React.Component {
                                 Operations
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown1">
-                                <a className="dropdown-item" href="/#" onClick={() => this.props.setNewPnr()}>New</a>
-                                <a className="dropdown-item" href="/#" onClick={() => this.props.loadJsonPnr()}>Load...</a>
-                                <a className="dropdown-item" href="/#"
-                                    onClick={() => this.props.menuSaveAs()}
-                                    data-toggle="modal" data-target="#commonModal">
-                                    Save as...
-                                </a>
+                                <a className="dropdown-item" href="/#" onClick={() => this.props.menuNewCallback()}>New</a>
+                                <a className="dropdown-item" href="/#" data-toggle="modal" data-target="#loadModal">Load from...</a>
+                                <a className="dropdown-item" href="/#" data-toggle="modal" data-target="#saveModal">Save as...</a>
                                 <div className="dropdown-divider"></div>
                                 <a className="dropdown-item" href="/#" onClick={this.menuLogToBrowser}>Log to browser</a>
                             </div>
