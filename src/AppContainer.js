@@ -4,7 +4,8 @@ import ShowPnr from './views/show-pnr/show-pnr';
 import SaveModal from './views/modals/save-modal';
 import LoadModal from './views/modals/load-modal';
 import rawpnr from './testdata/pnr.json';
-import { buildPnr } from './common/pnr-operations'
+import { buildPnr, saveJsonToBrowser, saveXmlToBrowser } from './common/pnr-operations'
+import { copyTextToClipboard } from './common/clipboard'
 
 export default class AppContainer extends React.Component {
 
@@ -14,16 +15,21 @@ export default class AppContainer extends React.Component {
         this.state = {
             pnr: null
         }
+
+        this.menuLogToBrowserCallback = this.menuLogToBrowserCallback.bind(this);
+        this.menuLoadFromCallback = this.menuLoadFromCallback.bind(this);
+        this.menuSaveAsCallback = this.menuSaveAsCallback.bind(this);
     }
 
     render() {
         return (
-            <div className="App">
+            <div className='App'>
                 <MainNavbar
-                    pnr={this.state.pnr}
+                    isPnrEmpty={this.state.pnr ? true : false}
                     menuNewCallback={() => this.setState({ pnr: null })}
+                    menuLogToBrowserCallback={this.menuLogToBrowserCallback}
                 />
-                <main role="main" className="container">
+                <main role='main' className='container'>
                     <ShowPnr
                         data={this.state.pnr}
                     />
@@ -35,17 +41,27 @@ export default class AppContainer extends React.Component {
         );
     }
 
-    menuLoadFromCallback = () => {
-        console.log("--- menuLoadFromCallback.... ");
-        //loadJsonPnr={() => this.setState({ pnr: buildPnr(rawpnr) })}
+    menuLogToBrowserCallback = () => {
+        console.log('pnr: ', this.state.pnr);
     }
 
-    menuSaveAsCallback = (fileType, minified) => {
-        console.log("--- menuSaveAsCallback.... ", fileType, minified);
+    menuLoadFromCallback = (fileType, text) => {
 
+        console.log(fileType, text);
 
-        //saveJsonToBrowser(this.props.pnr);
-        //saveXmlToBrowser(this.props.pnr);
+        this.setState({ pnr: buildPnr(rawpnr) });
+    }
+
+    menuSaveAsCallback = (fileType, copyToClipboard) => {
+        if (copyToClipboard) {
+            copyTextToClipboard(JSON.stringify(this.state.pnr));
+        }
+
+        if (fileType === 'json') {
+            saveJsonToBrowser(this.state.pnr);
+        } else if (fileType === 'xml') {
+            saveXmlToBrowser(this.state.pnr);
+        }
     }
 
 }
