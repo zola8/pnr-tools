@@ -1,11 +1,13 @@
 import React from 'react';
 import MainNavbar from './views/navbar/main-navbar'
 import ShowPnr from './views/show-pnr/show-pnr';
-import SaveModal from './views/modals/save-modal';
-import LoadModal from './views/modals/load-modal';
+import SaveModal from './views/modal/save-modal';
+import LoadModal from './views/modal/load-modal';
 import rawpnr from './testdata/pnr.json';
 import { buildPnr, saveJsonToBrowser, saveXmlToBrowser } from './common/pnr-operations'
 import { copyTextToClipboard } from './common/clipboard'
+import { IsJsonString } from './common/json-operations'
+import ShowAlerts from './views/alert/show-alerts'
 
 export default class AppContainer extends React.Component {
 
@@ -13,12 +15,14 @@ export default class AppContainer extends React.Component {
         super();
 
         this.state = {
-            pnr: null
+            pnr: null,
+            alerts: []
         }
 
         this.menuLogToBrowserCallback = this.menuLogToBrowserCallback.bind(this);
         this.menuLoadFromCallback = this.menuLoadFromCallback.bind(this);
         this.menuSaveAsCallback = this.menuSaveAsCallback.bind(this);
+        this.createAlert = this.createAlert.bind(this);
     }
 
     render() {
@@ -30,6 +34,9 @@ export default class AppContainer extends React.Component {
                     menuLogToBrowserCallback={this.menuLogToBrowserCallback}
                 />
                 <main role='main' className='container'>
+                    <ShowAlerts 
+                        data={this.state.alerts}
+                    />
                     <ShowPnr
                         data={this.state.pnr}
                     />
@@ -46,10 +53,20 @@ export default class AppContainer extends React.Component {
     }
 
     menuLoadFromCallback = (fileType, text) => {
-
-        console.log(fileType, text);
-
-        this.setState({ pnr: buildPnr(rawpnr) });
+        if (fileType === 'json') {
+            if (IsJsonString(text)) {
+                this.setState({ pnr: buildPnr(text) });
+            } else {
+                console.log('Invalid json format! ', text);
+                // TODO alert
+                this.createAlert('danger', 'alma');
+                console.log('-- ', this.state.alerts);
+            }
+        } else if (fileType === 'xml') {
+            // TODO load from xml
+            console.log(fileType, text);
+            this.setState({ pnr: buildPnr(rawpnr) });
+        }
     }
 
     menuSaveAsCallback = (fileType, copyToClipboard) => {
@@ -62,6 +79,17 @@ export default class AppContainer extends React.Component {
         } else if (fileType === 'xml') {
             saveXmlToBrowser(this.state.pnr);
         }
+    }
+
+    createAlert = (type, message) => {
+        let alerts = this.state.alerts;
+
+        alert = {
+            'type': type,
+            'message': message
+        }
+
+        alerts.push(alert);
     }
 
 }
