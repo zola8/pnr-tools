@@ -57,10 +57,7 @@ export default class AppContainer extends React.Component {
             if (IsJsonString(text)) {
                 this.setState({ pnr: buildPnr(text) });
             } else {
-                console.log('Invalid json format! ', text);
-                // TODO alert
-                this.createAlert('danger', 'alma');
-                console.log('-- ', this.state.alerts);
+                this.createAlert('danger', 'Invalid json format!', text.substring(0, 100) + "...");
             }
         } else if (fileType === 'xml') {
             // TODO load from xml
@@ -81,15 +78,14 @@ export default class AppContainer extends React.Component {
         }
     }
 
-    createAlert = (type, message) => {
-        let alerts = this.state.alerts;
-
-        alert = {
+    createAlert = (type, header, message) => {
+        let alert = {
             'type': type,
+            'header': header,
             'message': message
         }
 
-        alerts.push(alert);
+        this.setState({alerts: [...this.state.alerts, alert]});
     }
 
 }

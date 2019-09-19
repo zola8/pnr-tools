@@ -3,21 +3,39 @@ import Alert from './alert'
 
 export default class ShowAlerts extends React.Component {
 
+    constructor() {
+        super();
+
+        this.removeAlert = this.removeAlert.bind(this);
+    }
+
     render() {
-
-        console.log('-- ', this.props.data);
-
-        if (this.props.data === undefined || this.props.data.length == 0) {
-            // array empty or does not exist
-            return null;
-        }
-
-        return (
+        return !!this.props.data && this.props.data.length > 0 && (
             <div>
-                <Alert />
+                {this.createEntriesFromArray(this.props.data)}
             </div>
         )
     }
 
+    createEntriesFromArray = (array) => {
+        let entries = [];
+
+        for (const [index, value] of array.entries()) {
+            let content = (
+                <Alert key={'ShowAlerts_' + index}
+                    type={value.type}
+                    header={value.header}
+                    message={value.message}
+                />
+            )
+            entries.push(content);
+        }
+
+        return entries;
+    }
+
+    removeAlert = () => {
+        console.log('remove alert');
+    }
 
 }
