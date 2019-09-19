@@ -39,7 +39,30 @@ export default class MainNavbar extends React.Component {
                                 Actions
                             </a>
                             <div className='dropdown-menu' aria-labelledby='navbarDropdown2'>
-                                <a className='dropdown-item' href='/#'>Add segment....</a>
+                                <h6 className='dropdown-header'>Base actions</h6>
+                                <a className='dropdown-item' href='/#' onClick={() => this.props.clearPnrBaseCallback()}>Add / clear PNR base</a>
+                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
+                                    href='/#' onClick={() => this.props.increaseCrsVersionNumberCallback()}>Increase crsVersionNumber</a>
+                                <div className="dropdown-divider"></div>
+
+                                <h6 className='dropdown-header'>Object actions</h6>
+                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
+                                    href='/#' >Add / clear eotOriginator...</a>
+                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
+                                    href='/#'>Add / clear respo...</a>
+                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
+                                    href='/#'>Add / clear group...</a>
+                                <div className="dropdown-divider"></div>
+
+                                <h6 className='dropdown-header'>Array actions</h6>
+                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
+                                    href='/#'>Modify pnr keys...</a>
+                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
+                                    href='/#'>Modify names...</a>
+                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
+                                    href='/#'>Modify segments...</a>
+                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
+                                    href='/#'>Modify osis...</a>
                             </div>
                         </li>
                     </ul>

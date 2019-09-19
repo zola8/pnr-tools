@@ -24,6 +24,8 @@ export default class AppContainer extends React.Component {
         this.menuLoadFromCallback = this.menuLoadFromCallback.bind(this);
         this.menuSaveAsCallback = this.menuSaveAsCallback.bind(this);
         this.createAlert = this.createAlert.bind(this);
+        this.increaseCrsVersionNumberCallback = this.increaseCrsVersionNumberCallback.bind(this);
+        this.clearPnrBaseCallback = this.clearPnrBaseCallback.bind(this);
     }
 
     render() {
@@ -33,6 +35,8 @@ export default class AppContainer extends React.Component {
                     isPnrEmpty={this.state.pnr ? true : false}
                     menuNewCallback={this.menuNewPnrCallback}
                     menuLogToBrowserCallback={this.menuLogToBrowserCallback}
+                    increaseCrsVersionNumberCallback={this.increaseCrsVersionNumberCallback}
+                    clearPnrBaseCallback={this.clearPnrBaseCallback}
                 />
                 <main role='main' className='container'>
                     <ShowAlerts
@@ -96,6 +100,14 @@ export default class AppContainer extends React.Component {
         }
 
         this.setState({ alerts: [...this.state.alerts, alert] });
+    }
+
+    increaseCrsVersionNumberCallback = () => {
+        console.log('....increaseCrsVersionNumberCallback.....');
+    }
+
+    clearPnrBaseCallback = () => {
+        console.log('....clearPnrBaseCallback.....');
     }
 
 }
