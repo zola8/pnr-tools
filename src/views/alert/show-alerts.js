@@ -5,8 +5,6 @@ export default class ShowAlerts extends React.Component {
 
     constructor() {
         super();
-
-        this.removeAlert = this.removeAlert.bind(this);
     }
 
     render() {
@@ -32,10 +30,6 @@ export default class ShowAlerts extends React.Component {
         }
 
         return entries;
-    }
-
-    removeAlert = () => {
-        console.log('remove alert');
     }
 
 }

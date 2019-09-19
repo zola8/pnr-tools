@@ -37,7 +37,9 @@ export default class ShowPnr extends React.Component {
                 </div>
             )
         } else {
-            content = (<EmptyPnr />)
+            content = (
+                <EmptyPnr />
+            )
         }
 
         return (content);

@@ -19,6 +19,7 @@ export default class AppContainer extends React.Component {
             alerts: []
         }
 
+        this.menuNewPnrCallback = this.menuNewPnrCallback.bind(this);
         this.menuLogToBrowserCallback = this.menuLogToBrowserCallback.bind(this);
         this.menuLoadFromCallback = this.menuLoadFromCallback.bind(this);
         this.menuSaveAsCallback = this.menuSaveAsCallback.bind(this);
@@ -30,11 +31,11 @@ export default class AppContainer extends React.Component {
             <div className='App'>
                 <MainNavbar
                     isPnrEmpty={this.state.pnr ? true : false}
-                    menuNewCallback={() => this.setState({ pnr: null })}
+                    menuNewCallback={this.menuNewPnrCallback}
                     menuLogToBrowserCallback={this.menuLogToBrowserCallback}
                 />
                 <main role='main' className='container'>
-                    <ShowAlerts 
+                    <ShowAlerts
                         data={this.state.alerts}
                     />
                     <ShowPnr
@@ -52,6 +53,13 @@ export default class AppContainer extends React.Component {
         console.log('pnr: ', this.state.pnr);
     }
 
+    menuNewPnrCallback = () => {
+        this.setState({
+            pnr: null,
+            alerts: []
+        });
+    }
+
     menuLoadFromCallback = (fileType, text) => {
         if (fileType === 'json') {
             if (IsJsonString(text)) {
@@ -67,14 +75,16 @@ export default class AppContainer extends React.Component {
     }
 
     menuSaveAsCallback = (fileType, copyToClipboard) => {
+        let text = JSON.stringify(this.state.pnr);
+
         if (copyToClipboard) {
-            copyTextToClipboard(JSON.stringify(this.state.pnr));
+            copyTextToClipboard(text);
         }
 
         if (fileType === 'json') {
-            saveJsonToBrowser(this.state.pnr);
+            saveJsonToBrowser(text);
         } else if (fileType === 'xml') {
-            saveXmlToBrowser(this.state.pnr);
+            saveXmlToBrowser(text);
         }
     }
 
@@ -85,7 +95,7 @@ export default class AppContainer extends React.Component {
             'message': message
         }
 
-        this.setState({alerts: [...this.state.alerts, alert]});
+        this.setState({ alerts: [...this.state.alerts, alert] });
     }
 
 }
