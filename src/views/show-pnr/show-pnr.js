@@ -6,7 +6,7 @@ import RenderValueNull from './render-value-null'
 import RenderContent from './render-content'
 import ToggleAllElements from './toggle-all-elements'
 import RenderCollapse from './render-collapse'
-import EmptyPnr from './empty-pnr'
+import EmptyPnrPanel from './empty-pnr-panel'
 
 
 export default class ShowPnr extends React.Component {
@@ -38,7 +38,7 @@ export default class ShowPnr extends React.Component {
             )
         } else {
             content = (
-                <EmptyPnr />
+                <EmptyPnrPanel />
             )
         }
 

@@ -22,6 +22,80 @@ export function saveXmlToBrowser(pnr) {
 }
 
 export function buildPnr(rawpnr) {
+    if (!rawpnr) {
+        rawpnr = {};
+    }
+
+    let result = buildPnrBody(rawpnr);
+
+    if (rawpnr.pnrKeys) {
+        result.pnrKeys = buildPnrKeys(rawpnr.pnrKeys);
+    }
+
+    if (rawpnr.eotOriginator) {
+        result.eotOriginator = buildEotOriginator(rawpnr.eotOriginator);
+    }
+
+    if (rawpnr.respo) {
+        result.respo = buildRespo(rawpnr.respo);
+    }
+
+    if (rawpnr.group) {
+        result.group = buildGroup(rawpnr.group);
+    }
+
+    if (rawpnr.names) {
+        result.names = buildNames(rawpnr.names);
+    }
+
+    if (rawpnr.segments) {
+        result.segments = buildSegments(rawpnr.segments);
+    }
+
+    if (rawpnr.osis) {
+        result.osis = buildOsis(rawpnr.osis);
+    }
+
+    if (rawpnr.remarks) {
+        result.remarks = buildRemarks(rawpnr.remarks);
+    }
+
+    if (rawpnr.contacts) {
+        result.contacts = buildContacts(rawpnr.contacts);
+    }
+
+    if (rawpnr.addresses) {
+        result.addresses = buildAddresses(rawpnr.addresses);
+    }
+
+    if (rawpnr.ssrs) {
+        result.ssrs = buildSsrs(rawpnr.ssrs);
+    }
+
+    if (rawpnr.sks) {
+        result.sks = buildSks(rawpnr.sks);
+    }
+
+    if (rawpnr.tickets) {
+        result.tickets = buildTickets(rawpnr.tickets);
+    }
+
+    if (rawpnr.formOfPayments) {
+        result.formOfPayments = buildFormOfPayments(rawpnr.formOfPayments);
+    }
+
+    if (rawpnr.dcsDataList) {
+        result.dcsDataList = buildDcsDataList(rawpnr.dcsDataList);
+    }
+
+    if (rawpnr.tourCode) {
+        result.tourCode = buildTourCode(rawpnr.tourCode);
+    }
+
+    return result;
+}
+
+export function buildPnrBody(rawpnr) {
     let result = {
         "crsId": rawpnr.crsId,
         "recordLocator": rawpnr.recordLocator,
@@ -34,66 +108,92 @@ export function buildPnr(rawpnr) {
         "crsVersionNumber": rawpnr.crsVersionNumber
     }
 
-    if (rawpnr.pnrKeys) {
-        result.pnrKeys = [];
+    return result;
+}
 
-        rawpnr.pnrKeys.forEach(item => {
+export function buildPnrKeys(pnrKeys) {
+    let result = [];
+
+    if (pnrKeys) {
+        pnrKeys.forEach(item => {
             let newItem = {
                 "fileKey": item.fileKey,
                 "crsId": item.crsId
             };
 
-            result.pnrKeys.push(newItem);
+            result.push(newItem);
         });
     }
 
-    if (rawpnr.eotOriginator) {
-        result.eotOriginator = {
-            "eotAuthRequest": rawpnr.eotOriginator.eotAuthRequest,
-            "eotCity": rawpnr.eotOriginator.eotCity,
-            "eotCountry": rawpnr.eotOriginator.eotCountry,
-            "eotCrs": rawpnr.eotOriginator.eotCrs,
-            "eotIataNumber": rawpnr.eotOriginator.eotIataNumber,
-            "eotInHouse": rawpnr.eotOriginator.eotInHouse,
-            "eotOffice": rawpnr.eotOriginator.eotOffice,
-            "eotOrigType": rawpnr.eotOriginator.eotOrigType
+    return result;
+}
+
+export function buildEotOriginator(eotOriginator) {
+    let result = null;
+
+    if (eotOriginator) {
+        result = {
+            "eotAuthRequest": eotOriginator.eotAuthRequest,
+            "eotCity": eotOriginator.eotCity,
+            "eotCountry": eotOriginator.eotCountry,
+            "eotCrs": eotOriginator.eotCrs,
+            "eotIataNumber": eotOriginator.eotIataNumber,
+            "eotInHouse": eotOriginator.eotInHouse,
+            "eotOffice": eotOriginator.eotOffice,
+            "eotOrigType": eotOriginator.eotOrigType
         };
     }
 
-    if (rawpnr.respo) {
-        result.respo = {
-            "pccIataNumber": rawpnr.respo.pccIataNumber,
-            "posCity": rawpnr.respo.posCity,
-            "posCountry": rawpnr.respo.posCountry,
-            "posCrs": rawpnr.respo.posCrs,
-            "respoOffice": rawpnr.respo.respoOffice
+    return result;
+}
+
+export function buildRespo(respo) {
+    let result = null;
+
+    if (respo) {
+        result = {
+            "pccIataNumber": respo.pccIataNumber,
+            "posCity": respo.posCity,
+            "posCountry": respo.posCountry,
+            "posCrs": respo.posCrs,
+            "respoOffice": respo.respoOffice
         }
     }
 
-    if (rawpnr.group) {
-        result.group = {
-            "groupName": rawpnr.group.groupName,
-            "groupCount": rawpnr.group.groupCount,
-            "numberOfNames": rawpnr.group.numberOfNames,
+    return result;
+}
+
+export function buildGroup(group) {
+    let result = null;
+
+    if (group) {
+        result = {
+            "groupName": group.groupName,
+            "groupCount": group.groupCount,
+            "numberOfNames": group.numberOfNames,
             "groupFields": []
         }
 
-        if (rawpnr.group.groupFields) {
-            rawpnr.group.groupFields.forEach(item => {
+        if (group.groupFields) {
+            group.groupFields.forEach(item => {
                 let newItem = {
                     "groupFieldText": item.groupFieldText,
                     "groupFieldType": item.groupFieldType
                 };
 
-                result.group.groupFields.push(newItem);
+                result.groupFields.push(newItem);
             });
         }
     }
 
-    if (rawpnr.names) {
-        result.names = [];
+    return result;
+}
 
-        rawpnr.names.forEach(item => {
+export function buildNames(names) {
+    let result = [];
+
+    if (names) {
+        names.forEach(item => {
             let newItem = {
                 "dateOfBirth": item.dateOfBirth,
                 "firstName": item.firstName,
@@ -109,14 +209,18 @@ export function buildPnr(rawpnr) {
                 "title": item.title
             };
 
-            result.names.push(newItem);
+            result.push(newItem);
         });
     }
 
-    if (rawpnr.segments) {
-        result.segments = [];
+    return result;
+}
 
-        rawpnr.segments.forEach(item => {
+export function buildSegments(segments) {
+    let result = [];
+
+    if (segments) {
+        segments.forEach(item => {
             let newItem = {
                 "actionCode": item.actionCode,
                 "airlineCode": item.airlineCode,
@@ -142,14 +246,18 @@ export function buildPnr(rawpnr) {
                 "swissEBC": item.swissEBC
             };
 
-            result.segments.push(newItem);
+            result.push(newItem);
         });
     }
 
-    if (rawpnr.osis) {
-        result.osis = [];
+    return result;
+}
 
-        rawpnr.osis.forEach(item => {
+export function buildOsis(osis) {
+    let result = [];
+
+    if (osis) {
+        osis.forEach(item => {
             let newItem = {
                 "airlineCode": item.airlineCode,
                 "osiType": item.osiType,
@@ -164,8 +272,267 @@ export function buildPnr(rawpnr) {
                 newItem.segmentTattoos = item.segmentTattoos;
             }
 
-            result.osis.push(newItem);
+            result.push(newItem);
         });
+    }
+
+    return result;
+}
+
+export function buildRemarks(remarks) {
+    let result = null;
+
+    if (remarks) {
+        result = [];
+
+        remarks.forEach(item => {
+            let newItem = {
+                "designatedOffice1": item.designatedOffice1,
+                "designatedOffice2": item.designatedOffice2,
+                "designatedOffice3": item.designatedOffice3,
+                "extendFlag1": item.extendFlag1,
+                "extendFlag2": item.extendFlag2,
+                "extendFlag3": item.extendFlag3,
+                "remarkCategory": item.remarkCategory,
+                "remarkText": item.remarkText,
+                "remarkType": item.remarkType,
+                "writeFlag1": item.writeFlag1,
+                "writeFlag2": item.writeFlag2,
+                "writeFlag3": item.writeFlag3
+            };
+
+            if (item.paxTattoos) {
+                newItem.paxTattoos = item.paxTattoos;
+            }
+
+            if (item.segmentTattoos) {
+                newItem.segmentTattoos = item.segmentTattoos;
+            }
+
+            result.push(newItem);
+        });
+    }
+
+    return result;
+}
+
+export function buildContacts(contacts) {
+    let result = [];
+
+    if (contacts) {
+        contacts.forEach(item => {
+            let newItem = {
+                "contactText": item.contactText,
+                "contactType": item.contactType
+            };
+
+            if (item.paxTattoos) {
+                newItem.paxTattoos = item.paxTattoos;
+            }
+
+            result.push(newItem);
+        });
+    }
+
+    return result;
+}
+
+export function buildAddresses(addresses) {
+    let result = [];
+
+    if (addresses) {
+        addresses.forEach(item => {
+            let newItem = {
+                "addressType": item.addressType,
+                "city": item.city,
+                "company": item.company,
+                "country": item.country,
+                "name": item.name,
+                "poBox": item.poBox,
+                "state": item.state,
+                "street1": item.street1,
+                "street2": item.street2,
+                "zipCode": item.zipCode
+            };
+
+            if (item.paxTattoos) {
+                newItem.paxTattoos = item.paxTattoos;
+            }
+
+            result.push(newItem);
+        });
+    }
+
+    return result;
+}
+
+export function buildSsrs(ssrs) {
+    let result = [];
+
+    if (ssrs) {
+        ssrs.forEach(item => {
+            let newItem = {
+                "actionCode": item.actionCode,
+                "airlineCode": item.airlineCode,
+                "chargeable": item.chargeable,
+                "requestQuantity": item.requestQuantity,
+                "specialRequirementData": item.specialRequirementData,
+                "ssrText": item.ssrText,
+                "ssrType": item.ssrType
+            };
+
+            if (item.paxTattoos) {
+                newItem.paxTattoos = item.paxTattoos;
+            }
+
+            if (item.segmentTattoos) {
+                newItem.segmentTattoos = item.segmentTattoos;
+            }
+
+            result.push(newItem);
+        });
+    }
+
+    return result;
+}
+
+export function buildSks(sks) {
+    let result = [];
+
+    if (sks) {
+        sks.forEach(item => {
+            let newItem = {
+                "actionCode": item.actionCode,
+                "airlineCode": item.airlineCode,
+                "requestQuantity": item.requestQuantity,
+                "skText": item.skText,
+                "skType": item.skType
+            };
+
+            if (item.paxTattoos) {
+                newItem.paxTattoos = item.paxTattoos;
+            }
+
+            if (item.segmentTattoos) {
+                newItem.segmentTattoos = item.segmentTattoos;
+            }
+
+            result.push(newItem);
+        });
+    }
+
+    return result;
+}
+
+export function buildTickets(tickets) {
+    let result = [];
+
+    if (tickets) {
+        tickets.forEach(item => {
+            let newItem = {
+                "airlineNumber": item.airlineNumber,
+                "amountString": item.amountString,
+                "checkDigit": item.checkDigit,
+                "confirmationNumber": item.confirmationNumber,
+                "conjunctionNumber": item.conjunctionNumber,
+                "couponNumbers": item.couponNumbers,
+                "currency": item.currency,
+                "documentNumber": item.documentNumber,
+                "elementType": item.elementType,
+                "freeText": item.freeText,
+                "iataCode": item.iataCode,
+                "issueCity": item.issueCity,
+                "issueDate": item.issueDate,
+                "issueEntry": item.issueEntry,
+                "issueIndicator": item.issueIndicator,
+                "issueOffice": item.issueOffice,
+                "override": item.override,
+                "paxType": item.paxType,
+            };
+
+            if (item.paxTattoos) {
+                newItem.paxTattoos = item.paxTattoos;
+            }
+
+            if (item.segmentTattoos) {
+                newItem.segmentTattoos = item.segmentTattoos;
+            }
+
+            if (item.ssrTattoos) {
+                newItem.ssrTattoos = item.ssrTattoos;
+            }
+
+            result.push(newItem);
+        });
+    }
+
+    return result;
+}
+
+export function buildFormOfPayments(formOfPayments) {
+    let result = [];
+
+    if (formOfPayments) {
+        formOfPayments.forEach(item => {
+            let newItem = {
+                "amountString": item.amountString,
+                "currency": item.currency,
+                "fopText": item.fopText,
+                "paxType": item.paxType,
+                "type": item.type
+            };
+
+            if (item.paxTattoos) {
+                newItem.paxTattoos = item.paxTattoos;
+            }
+
+            if (item.segmentTattoos) {
+                newItem.segmentTattoos = item.segmentTattoos;
+            }
+
+            result.push(newItem);
+        });
+    }
+
+    return result;
+}
+
+export function buildDcsDataList(dcsDataList) {
+    let result = [];
+
+    if (dcsDataList) {
+        dcsDataList.forEach(item => {
+            let newItem = {
+                "acceptanceChannelId": item.acceptanceChannelId,
+                "boardingStatus": item.boardingStatus,
+                "cabinCode": item.cabinCode,
+                "cabinRegradeType": item.cabinRegradeType,
+                "cancellationReasonCode": item.cancellationReasonCode,
+                "cancellationReasonDescription": item.cancellationReasonDescription,
+                "customerAcceptanceStatus": item.customerAcceptanceStatus,
+                "customerBaggageStatus": item.customerBaggageStatus,
+                "customerRecordStatus": item.customerRecordStatus,
+                "destination": item.destination,
+                "origin": item.origin,
+                "paxType": item.paxType,
+                "seatNumber": item.seatNumber,
+                "segmentTattoo": item.segmentTattoo
+            };
+
+            if (item.paxTattoos) {
+                newItem.paxTattoos = item.paxTattoos;
+            }
+
+            result.push(newItem);
+        });
+    }
+
+    return result;
+}
+
+export function buildTourCode(tourCode) {
+    let result = {
+        "freeText": tourCode.freeText
     }
 
     return result;

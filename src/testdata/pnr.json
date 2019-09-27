@@ -208,9 +208,73 @@
             "skType": ""
         }
     ],
-    "tickets": [],
-    "formOfPayments": [],
-    "dcsDataList": [],
+    "tickets": [
+        {
+            "airlineNumber": "102",
+            "amountString": "2000.34",
+            "checkDigit": "",
+            "confirmationNumber": "",
+            "conjunctionNumber": "",
+            "couponNumbers": "",
+            "currency": "EUR",
+            "documentNumber": "",
+            "elementType": "",
+            "freeText": "",
+            "iataCode": "",
+            "issueCity": "",
+            "issueDate": "",
+            "issueEntry": "",
+            "issueIndicator": "",
+            "issueOffice": "",
+            "override": "",
+            "paxTattoos": [
+                "p1"
+            ],
+            "paxType": "",
+            "segmentTattoos": [
+                "s1"
+            ],
+            "ssrTattoos": [
+                "ssr1"
+            ]
+        }
+    ],
+    "formOfPayments": [
+        {
+            "amountString": "",
+            "currency": "",
+            "fopText": "",
+            "paxTattoos": [
+                "p1"
+            ],
+            "paxType": "",
+            "segmentTattoos": [
+                "s1"
+            ],
+            "type": ""
+        }
+    ],
+    "dcsDataList": [
+        {
+            "acceptanceChannelId": "",
+            "boardingStatus": "",
+            "cabinCode": "",
+            "cabinRegradeType": "",
+            "cancellationReasonCode": "",
+            "cancellationReasonDescription": "",
+            "customerAcceptanceStatus": "",
+            "customerBaggageStatus": "",
+            "customerRecordStatus": "",
+            "destination": "",
+            "origin": "",
+            "paxTattoos": [
+                "p1"
+            ],
+            "paxType": "",
+            "seatNumber": "",
+            "segmentTattoo": "seg1"
+        }
+    ],
     "tourCode": {
         "freeText": ""
     }
