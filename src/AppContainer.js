@@ -8,6 +8,7 @@ import { buildPnr, saveJsonToBrowser, saveXmlToBrowser } from './common/pnr-oper
 import { copyTextToClipboard } from './common/clipboard'
 import { IsJsonString } from './common/json-operations'
 import ShowAlerts from './views/alert/show-alerts'
+import PnrGraphLayout from './views/graph-cytoscape/pnr-graph-layout'
 
 export default class AppContainer extends React.Component {
 
@@ -42,9 +43,14 @@ export default class AppContainer extends React.Component {
                     <ShowAlerts
                         data={this.state.alerts}
                     />
+
+                    <PnrGraphLayout />
+
+                    {/* 
                     <ShowPnr
                         data={this.state.pnr}
                     />
+                    */}
 
                     <SaveModal modalCallback={this.menuSaveAsCallback} />
                     <LoadModal modalCallback={this.menuLoadFromCallback} />
