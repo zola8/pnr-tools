@@ -1,0 +1,26 @@
+TODO list:
+
+- menü:
+    - menüben váltás: graph view / pnr text view
+
+- README.md
+
+- file operations:
+    - import json file
+    - export json file
+    - import xml file
+    - export xml file
+    - json-xml conversion
+    - import json copy-paste data
+    - import xml  copy-paste data
+
+- cytoscape graph view:
+    - pnr adatból graph node struktúra építése
+    - pnr layout grafikai megjelenítése
+    - export image
+    - egyéb funkciók után nézni (vagy layout váltás?)
+
+- editálás
+    - general input készítése
+    - pnr struktúra editálása
+
