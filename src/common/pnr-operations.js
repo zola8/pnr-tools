@@ -280,11 +280,9 @@ export function buildOsis(osis) {
 }
 
 export function buildRemarks(remarks) {
-    let result = null;
+    let result = [];
 
     if (remarks) {
-        result = [];
-
         remarks.forEach(item => {
             let newItem = {
                 "designatedOffice1": item.designatedOffice1,
@@ -536,4 +534,12 @@ export function buildTourCode(tourCode) {
     }
 
     return result;
+}
+
+export function increaseCrsVersionNumber(pnr) {
+    let crsVersionNumber = pnr.crsVersionNumber;
+    crsVersionNumber++;
+
+    pnr.crsVersionNumber = crsVersionNumber;
+    return pnr;
 }

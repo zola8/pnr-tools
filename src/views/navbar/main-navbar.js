@@ -26,7 +26,7 @@ export default class MainNavbar extends React.Component {
                                 <a className='dropdown-item' href='/#' data-toggle='modal' data-target='#LoadModal'>
                                     Load from...
                                 </a>
-                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')}
+                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? ' disabled' : '')}
                                     href='/#' data-toggle='modal' data-target='#SaveModal'>
                                     Save as...
                                 </a>
@@ -34,41 +34,52 @@ export default class MainNavbar extends React.Component {
                                 <a className='dropdown-item' href='/#' onClick={() => this.props.menuLogToBrowserCallback()}>Log to browser</a>
                             </div>
                         </li>
-                        <li className='nav-item dropdown'>
-                            <a className='nav-link dropdown-toggle' href='#' id='navbarDropdown2' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                                Actions
-                            </a>
-                            <div className='dropdown-menu' aria-labelledby='navbarDropdown2'>
-                                <h6 className='dropdown-header'>Base actions</h6>
-                                <a className='dropdown-item' href='/#' onClick={() => this.props.clearPnrBaseCallback()}>Add / clear PNR base</a>
-                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
-                                    href='/#' onClick={() => this.props.increaseCrsVersionNumberCallback()}>Increase crsVersionNumber</a>
-                                <div className="dropdown-divider"></div>
 
-                                <h6 className='dropdown-header'>Object actions</h6>
-                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
-                                    href='/#' >Add / clear eotOriginator...</a>
-                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
-                                    href='/#'>Add / clear respo...</a>
-                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
-                                    href='/#'>Add / clear group...</a>
-                                <div className="dropdown-divider"></div>
+                        {!this.props.isPnrEmpty && this.renderActionMenu()}
 
-                                <h6 className='dropdown-header'>Array actions</h6>
-                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
-                                    href='/#'>Modify pnr keys...</a>
-                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
-                                    href='/#'>Modify names...</a>
-                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
-                                    href='/#'>Modify segments...</a>
-                                <a className={'dropdown-item' + (this.props.isPnrEmpty ? '' : ' disabled')} 
-                                    href='/#'>Modify osis...</a>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </nav>
         );
+    }
+
+    renderActionMenu = () => {
+        return (
+        <li className='nav-item dropdown'>
+            <a className='nav-link dropdown-toggle' href='#' id='navbarDropdown2' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                Actions
+                            </a>
+            <div className='dropdown-menu' aria-labelledby='navbarDropdown2'>
+                <h6 className='dropdown-header'>Base actions</h6>
+
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.increaseCrsVersionNumberCallback()}>Increase crsVersionNumber</a>
+
+                <div className="dropdown-divider"></div>
+                <h6 className='dropdown-header'>Object actions</h6>
+
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.addEotOriginatorCallback()}>Add / clear eotOriginator</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.addRespoCallback()}>Add / clear respo</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.addGroupCallback()}>Add / clear group</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.addTourCodeCallback()}>Add / clear tourCode</a>
+
+                <div className="dropdown-divider"></div>
+                <h6 className='dropdown-header'>Array actions</h6>
+
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearPnrKeysCallback()}>Clear pnrKeys</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearNamesCallback()}>Clear names</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearSegmentsCallback()}>Clear segments</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearOsisCallback()}>Clear osis</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearRemarksCallback()}>Clear remarks</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearContactsCallback()}>Clear contacts</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearAddressesCallback()}>Clear addresses</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearSsrsCallback()}>Clear ssrs</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearSksCallback()}>Clear sks</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearTicketsCallback()}>Clear tickets</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearFormOfPaymentsCallback()}>Clear formOfPayments</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearDcsDataListCallback()}>Clear dcsDataList</a>
+            </div>
+        </li>
+        )
     }
 
 }
