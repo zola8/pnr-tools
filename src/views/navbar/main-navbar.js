@@ -2,10 +2,6 @@ import React from 'react';
 
 export default class MainNavbar extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <nav className='navbar navbar-expand-md navbar-dark bg-dark fixed-top'>
@@ -17,7 +13,7 @@ export default class MainNavbar extends React.Component {
                 <div className='collapse navbar-collapse' id='navbarMain'>
                     <ul className='navbar-nav mr-auto'>
                         <li className='nav-item dropdown'>
-                            <a className='nav-link dropdown-toggle' href='#' id='navbarDropdown1' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                            <a className='nav-link dropdown-toggle' href='/#' id='navbarDropdown1' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                                 Operations
                             </a>
                             <div className='dropdown-menu' aria-labelledby='navbarDropdown1'>
@@ -46,7 +42,7 @@ export default class MainNavbar extends React.Component {
     renderActionMenu = () => {
         return (
         <li className='nav-item dropdown'>
-            <a className='nav-link dropdown-toggle' href='#' id='navbarDropdown2' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+            <a className='nav-link dropdown-toggle' href='/#' id='navbarDropdown2' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                 Actions
                             </a>
             <div className='dropdown-menu' aria-labelledby='navbarDropdown2'>
@@ -65,18 +61,18 @@ export default class MainNavbar extends React.Component {
                 <div className="dropdown-divider"></div>
                 <h6 className='dropdown-header'>Array actions</h6>
 
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearPnrKeysCallback()}>Clear pnrKeys</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearNamesCallback()}>Clear names</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearSegmentsCallback()}>Clear segments</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearOsisCallback()}>Clear osis</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearRemarksCallback()}>Clear remarks</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearContactsCallback()}>Clear contacts</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearAddressesCallback()}>Clear addresses</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearSsrsCallback()}>Clear ssrs</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearSksCallback()}>Clear sks</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearTicketsCallback()}>Clear tickets</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearFormOfPaymentsCallback()}>Clear formOfPayments</a>
-                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearDcsDataListCallback()}>Clear dcsDataList</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearPnrKeysCallback()}>Add / clear pnrKeys</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearNamesCallback()}>Add / clear names</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearSegmentsCallback()}>Add / clear segments</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearOsisCallback()}>Add / clear osis</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearRemarksCallback()}>Add / clear remarks</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearContactsCallback()}>Add / clear contacts</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearAddressesCallback()}>Add / clear addresses</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearSsrsCallback()}>Add / clear ssrs</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearSksCallback()}>Add / clear sks</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearTicketsCallback()}>Add / clear tickets</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearFormOfPaymentsCallback()}>Add / clear formOfPayments</a>
+                <a className={'dropdown-item'} href='/#' onClick={() => this.props.clearDcsDataListCallback()}>Add / clear dcsDataList</a>
             </div>
         </li>
         )

@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteButton from './delete-button';
 
 export default class RenderCollapse extends React.Component {
 
@@ -10,6 +11,7 @@ export default class RenderCollapse extends React.Component {
                         href={this.props.disabled ? '/#' : '#' + this.props.collapseid} 
                         role='button' aria-expanded='false' aria-controls={this.props.collapseid}>
                         {this.props.title}
+                        {!this.props.disabled && <DeleteButton />}
                     </a>
                 </div>
                 <div className={this.props.disabled ? 'show' : 'collapse show multi-collapse-view'} id={this.props.collapseid}>

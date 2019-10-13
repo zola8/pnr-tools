@@ -3,10 +3,6 @@ import Alert from './alert'
 
 export default class ShowAlerts extends React.Component {
 
-    constructor() {
-        super();
-    }
-
     render() {
         return !!this.props.data && this.props.data.length > 0 && (
             <div>
