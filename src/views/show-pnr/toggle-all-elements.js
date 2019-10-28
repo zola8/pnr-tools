@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ToggleAllElements extends React.Component {
+export default class ToggleAllElements extends React.Component {
 
     render() {
         return (
@@ -13,5 +13,3 @@ class ToggleAllElements extends React.Component {
     }
 
 }
-
-export default ToggleAllElements;

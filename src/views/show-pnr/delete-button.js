@@ -4,7 +4,10 @@ export default class DeleteButton extends React.Component {
 
     render() {
         return (
-            <span class="close-icon float-right"></span>
+            <span className="close-icon float-right"
+                onClick={() => this.props.removeElementCallback(this.props.removableElement)}
+            >
+            </span>
         );
     }
 

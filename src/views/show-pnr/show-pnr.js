@@ -32,7 +32,12 @@ export default class ShowPnr extends React.Component {
                         />
                         <ToggleAllElements />
                     </div>
-                    <RenderCollapse title='PNR' content={this.createEntriesFromObject(this.props.data, 0, 'ShowPnr')} collapseid='collapse_pnr' disabled />
+                    <RenderCollapse
+                        title='PNR'
+                        content={this.createEntriesFromObject(this.props.data, 0, 'ShowPnr')}
+                        collapseid='collapse_pnr'
+                        disabled
+                    />
                     <br />
                 </div>
             )
@@ -50,6 +55,7 @@ export default class ShowPnr extends React.Component {
 
         Object.keys(data).forEach((key) => {
             let value = data[key];
+            let removableElement = indent === 0 ? key : null;
 
             if (this.state.shouldHideNulls && value == null) {
                 // hide elements
@@ -64,7 +70,15 @@ export default class ShowPnr extends React.Component {
                         let contentRow1 = this.renderRow(parentkey, key, value, indent);
                         let objectEntries1 = this.createEntriesFromArray(value, indent + 1, parentkey + '_' + key);
                         let content1 = (<div> {contentRow1} {objectEntries1} </div>);
-                        let collapseDiv1 = (<RenderCollapse title={key} content={content1} collapseid={'collapse_' + key} key={'collapse_' + key} />);
+                        let collapseDiv1 = (
+                            <RenderCollapse title={key}
+                                content={content1}
+                                collapseid={'collapse_' + key}
+                                key={'collapse_' + key}
+                                removableElement={removableElement}
+                                removeElementCallback={this.props.removeElementCallback}
+                            />
+                        );
 
                         if (indent === 0) {
                             entries.push(collapseDiv1);
@@ -77,7 +91,15 @@ export default class ShowPnr extends React.Component {
                         let contentRow2 = this.renderRow(parentkey, key, value, indent);
                         let objectEntries2 = this.createEntriesFromObject(value, indent + 1, parentkey + '_' + key);
                         let content2 = (<div> {contentRow2} {objectEntries2} </div>);
-                        let collapseDiv2 = (<RenderCollapse title={key} content={content2} collapseid={'collapse_' + key} key={'collapse_' + key} />);
+                        let collapseDiv2 = (
+                            <RenderCollapse title={key}
+                                content={content2}
+                                collapseid={'collapse_' + key}
+                                key={'collapse_' + key}
+                                removableElement={removableElement}
+                                removeElementCallback={this.props.removeElementCallback}
+                            />
+                        );
 
                         entries.push(collapseDiv2);
                         break;

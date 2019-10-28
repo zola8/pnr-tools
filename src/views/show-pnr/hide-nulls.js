@@ -1,6 +1,6 @@
 import React from 'react';
 
-class HideNulls extends React.Component {
+export default class HideNulls extends React.Component {
 
     render() {
         return (
@@ -17,5 +17,3 @@ class HideNulls extends React.Component {
     }
 
 }
-
-export default HideNulls;

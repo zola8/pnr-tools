@@ -58,6 +58,7 @@ export default class AppContainer extends React.Component {
 
                     <ShowPnr
                         data={this.state.pnr}
+                        removeElementCallback={this.removeElementCallback}
                     />
 
                     <SaveModal modalCallback={this.menuSaveAsCallback} />
@@ -230,6 +231,17 @@ export default class AppContainer extends React.Component {
     clearDcsDataListCallback = () => {
         let pnr = this.state.pnr;
         pnr.dcsDataList = PnrOperations.buildDcsDataList(null);
+
+        this.setState({ pnr: pnr });
+    }
+
+    removeElementCallback = (elementName) => {
+        if (!elementName) {
+            return;
+        }
+
+        let pnr = this.state.pnr;
+        delete pnr[elementName];
 
         this.setState({ pnr: pnr });
     }
