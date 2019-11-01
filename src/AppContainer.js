@@ -60,10 +60,14 @@ export default class AppContainer extends React.Component {
                     <PnrEditor 
                     />
                     
+                    {/*
+
                     <PnrViewer
                         data={this.state.pnr}
                         removeElementCallback={this.removeElementCallback}
                     />
+
+                    */}
 
                     <SaveModal modalCallback={this.menuSaveAsCallback} />
                     <LoadModal modalCallback={this.menuLoadFromCallback} />
