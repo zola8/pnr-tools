@@ -1,6 +1,6 @@
 import React from 'react';
 import MainNavbar from './views/navbar/main-navbar'
-import ShowPnr from './views/show-pnr/show-pnr';
+import PnrViewer from './views/pnr-viewer/pnr-viewer';
 import SaveModal from './views/modal/save-modal';
 import LoadModal from './views/modal/load-modal';
 import rawpnr from './testdata/pnr.json';
@@ -8,6 +8,7 @@ import * as PnrOperations from './common/pnr-operations'
 import { copyTextToClipboard } from './common/clipboard'
 import { IsJsonString } from './common/json-operations'
 import ShowAlerts from './views/alert/show-alerts'
+import PnrEditor from './views/pnr-editor/pnr-editor'
 
 export default class AppContainer extends React.Component {
 
@@ -56,7 +57,10 @@ export default class AppContainer extends React.Component {
                         data={this.state.alerts}
                     />
 
-                    <ShowPnr
+                    <PnrEditor 
+                    />
+                    
+                    <PnrViewer
                         data={this.state.pnr}
                         removeElementCallback={this.removeElementCallback}
                     />

@@ -9,7 +9,7 @@ import RenderCollapse from './render-collapse'
 import EmptyPnrPanel from './empty-pnr-panel'
 
 
-export default class ShowPnr extends React.Component {
+export default class PnrViewer extends React.Component {
 
     constructor(props) {
         super(props);
