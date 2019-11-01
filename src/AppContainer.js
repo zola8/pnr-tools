@@ -58,6 +58,7 @@ export default class AppContainer extends React.Component {
                     />
 
                     <PnrEditor 
+                        data={this.state.pnr}
                     />
                     
                     {/*

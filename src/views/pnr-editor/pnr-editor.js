@@ -1,33 +1,33 @@
 import React from 'react';
 import FormGroup from './form-group';
+import GeneralInput from './general-input';
+import EmptyPnrPanel from '../pnr-viewer/empty-pnr-panel'
 
 export default class PnrEditor extends React.Component {
 
     render() {
+
+        console.log(this.props.data);
+
         return (
             <div>
-                <FormGroup
-                    content={this.getContent()}
-                />
+
+                <FormGroup header="PNR body">
+                    <GeneralInput label="crsId" oneline />
+                    <GeneralInput label="recordLocator" oneline />
+                    <GeneralInput label="creationDate" />
+                    <GeneralInput label="eotDate" />
+                    <GeneralInput label="commencePoint" />
+                    <GeneralInput label="nonCommercial" />
+                    <GeneralInput label="canceled" />
+                    <GeneralInput label="operating" />
+                    <GeneralInput label="crsVersionNumber" />
+                </FormGroup>
+
+                <EmptyPnrPanel />
+
             </div>
         )
     }
-
-    getContent = () => {
-        return (
-            <div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-                </div>
-            </div>
-        );
-    }
-
 
 }
