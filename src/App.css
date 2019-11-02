@@ -32,3 +32,8 @@ main {
 .dropdown-menu-wide {
     width: 250px !important;
 }
+
+footer {
+    min-height: 6rem;
+    margin-top: 6rem;
+}

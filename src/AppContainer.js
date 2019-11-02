@@ -4,11 +4,14 @@ import PnrViewer from './views/pnr-viewer/pnr-viewer';
 import SaveModal from './views/modal/save-modal';
 import LoadModal from './views/modal/load-modal';
 import rawpnr from './testdata/pnr.json';
-import * as PnrOperations from './common/pnr-operations'
-import { copyTextToClipboard } from './common/clipboard'
-import { IsJsonString } from './common/json-operations'
-import ShowAlerts from './views/alert/show-alerts'
-import PnrEditor from './views/pnr-editor/pnr-editor'
+import * as PnrOperations from './common/pnr-operations';
+import { copyTextToClipboard } from './common/clipboard';
+import { IsJsonString } from './common/json-operations';
+import ShowAlerts from './views/alert/show-alerts';
+import PnrEditor from './views/pnr-editor/pnr-editor';
+import LanguageEnglish from './i18n/en.json';
+import LanguageHungarian from './i18n/hu.json';
+import SelectLanguage from './views/i18n/select-language';
 
 export default class AppContainer extends React.Component {
 
@@ -17,7 +20,15 @@ export default class AppContainer extends React.Component {
 
         this.state = {
             pnr: null,
-            alerts: []
+            alerts: [],
+            i18n: {
+                language: "en",
+                dictionary: LanguageEnglish,
+                availableLanguages: [
+                    { code: "en", name: "English", dictionary: LanguageEnglish },
+                    { code: "hu", name: "Magyar", dictionary: LanguageHungarian }
+                ]
+            }
         }
 
         this.menuNewPnrCallback = this.menuNewPnrCallback.bind(this);
@@ -57,10 +68,10 @@ export default class AppContainer extends React.Component {
                         data={this.state.alerts}
                     />
 
-                    <PnrEditor 
+                    <PnrEditor
                         data={this.state.pnr}
                     />
-                    
+
                     {/*
 
                     <PnrViewer
@@ -73,6 +84,12 @@ export default class AppContainer extends React.Component {
                     <SaveModal modalCallback={this.menuSaveAsCallback} />
                     <LoadModal modalCallback={this.menuLoadFromCallback} />
                 </main>
+
+                <footer className="footer text-center p-3 border-top">
+                    <SelectLanguage availableLanguages={this.state.i18n.availableLanguages}
+                        setLanguage={this.setLanguage}
+                    />
+                </footer>
             </div>
         );
     }
@@ -253,6 +270,19 @@ export default class AppContainer extends React.Component {
         delete pnr[elementName];
 
         this.setState({ pnr: pnr });
+    }
+
+    setLanguage = (language) => {
+        let i18n = this.state.i18n;
+        i18n.language = language;
+
+        for (var i = 0; i < i18n.availableLanguages.length; i++) {
+            if (i18n.availableLanguages[i].code === language) {
+                i18n.dictionary = i18n.availableLanguages[i].dictionary;
+            }
+        }
+
+        this.setState({ i18n: i18n });
     }
 
 }

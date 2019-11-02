@@ -33,7 +33,7 @@ export default class PnrEditor extends React.Component {
                     <GeneralTextInput label="crsVersionNumber" oneline />
                 </FormGroup>
 
-                <div className="row my-4 float-right mr-3">
+                <div className="d-flex flex-row-reverse my-4 mr-3">
                     <button type="button" className="btn btn-primary" onClick={this.savePnrBodyClick}>Save</button>
                 </div>
             </div>
