@@ -1,33 +1,47 @@
 import React from 'react';
 import FormGroup from './form-group';
-import GeneralInput from './general-input';
-import EmptyPnrPanel from '../pnr-viewer/empty-pnr-panel'
+import GeneralTextInput from './general-text-input';
 
 export default class PnrEditor extends React.Component {
 
+    constructor() {
+        super();
+
+        this.savePnrBodyClick = this.savePnrBodyClick.bind(this);
+    }
+
     render() {
-
-        console.log(this.props.data);
-
         return (
             <div>
-
-                <FormGroup header="PNR body">
-                    <GeneralInput label="crsId" oneline />
-                    <GeneralInput label="recordLocator" oneline />
-                    <GeneralInput label="creationDate" />
-                    <GeneralInput label="eotDate" />
-                    <GeneralInput label="commencePoint" />
-                    <GeneralInput label="nonCommercial" />
-                    <GeneralInput label="canceled" />
-                    <GeneralInput label="operating" />
-                    <GeneralInput label="crsVersionNumber" />
-                </FormGroup>
-
-                <EmptyPnrPanel />
-
+                {this.pnrBodyEditor()}
             </div>
         )
+    }
+
+    pnrBodyEditor = () => {
+        return (
+            <div>
+                <FormGroup header="PNR body" border="border-info" headerbg="bg-info">
+                    <GeneralTextInput label="crsId" oneline />
+                    <GeneralTextInput label="recordLocator" oneline />
+                    <GeneralTextInput label="creationDate" oneline />
+                    <GeneralTextInput label="eotDate" oneline />
+                    <GeneralTextInput label="commencePoint" oneline />
+                    <GeneralTextInput label="nonCommercial" oneline />
+                    <GeneralTextInput label="canceled" oneline />
+                    <GeneralTextInput label="operating" oneline />
+                    <GeneralTextInput label="crsVersionNumber" oneline />
+                </FormGroup>
+
+                <div className="row my-4 float-right mr-3">
+                    <button type="button" className="btn btn-primary" onClick={this.savePnrBodyClick}>Save</button>
+                </div>
+            </div>
+        )
+    }
+
+    savePnrBodyClick = () => {
+        console.log('save....');
     }
 
 }
