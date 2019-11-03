@@ -37,3 +37,8 @@ footer {
     min-height: 6rem;
     margin-top: 6rem;
 }
+
+.hover-info:hover {
+    background-color: #17a2b8!important;
+    cursor: pointer;
+}

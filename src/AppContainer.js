@@ -9,9 +9,9 @@ import { copyTextToClipboard } from './common/clipboard';
 import { IsJsonString } from './common/json-operations';
 import ShowAlerts from './views/alert/show-alerts';
 import PnrEditor from './views/pnr-editor/pnr-editor';
-import LanguageEnglish from './i18n/en.json';
-import LanguageHungarian from './i18n/hu.json';
 import SelectLanguage from './views/i18n/select-language';
+import * as i18nOperations from './i18n/i18n-operations';
+import i18nContext from './i18n/i18n-context';
 
 export default class AppContainer extends React.Component {
 
@@ -23,11 +23,8 @@ export default class AppContainer extends React.Component {
             alerts: [],
             i18n: {
                 language: "en",
-                dictionary: LanguageEnglish,
-                availableLanguages: [
-                    { code: "en", name: "English", dictionary: LanguageEnglish },
-                    { code: "hu", name: "Magyar", dictionary: LanguageHungarian }
-                ]
+                dictionary: i18nOperations.getDictionary('en'),
+                availableLanguages: i18nOperations.getAvailableLanguages()
             }
         }
 
@@ -40,39 +37,40 @@ export default class AppContainer extends React.Component {
 
     render() {
         return (
-            <div className='App'>
-                <MainNavbar
-                    isPnrEmpty={this.state.pnr == null ? true : false}
-                    menuNewCallback={this.menuNewPnrCallback}
-                    menuLogToBrowserCallback={this.menuLogToBrowserCallback}
-                    increaseCrsVersionNumberCallback={this.increaseCrsVersionNumberCallback}
-                    addEotOriginatorCallback={this.addEotOriginatorCallback}
-                    addRespoCallback={this.addRespoCallback}
-                    addGroupCallback={this.addGroupCallback}
-                    addTourCodeCallback={this.addTourCodeCallback}
-                    clearPnrKeysCallback={this.clearPnrKeysCallback}
-                    clearNamesCallback={this.clearNamesCallback}
-                    clearSegmentsCallback={this.clearSegmentsCallback}
-                    clearOsisCallback={this.clearOsisCallback}
-                    clearRemarksCallback={this.clearRemarksCallback}
-                    clearContactsCallback={this.clearContactsCallback}
-                    clearAddressesCallback={this.clearAddressesCallback}
-                    clearSsrsCallback={this.clearSsrsCallback}
-                    clearSksCallback={this.clearSksCallback}
-                    clearTicketsCallback={this.clearTicketsCallback}
-                    clearFormOfPaymentsCallback={this.clearFormOfPaymentsCallback}
-                    clearDcsDataListCallback={this.clearDcsDataListCallback}
-                />
-                <main role='main' className='container'>
-                    <ShowAlerts
-                        data={this.state.alerts}
+            <i18nContext.Provider value={this.state.i18n.dictionary}>
+                <div className='App'>
+                    <MainNavbar
+                        isPnrEmpty={this.state.pnr == null ? true : false}
+                        menuNewCallback={this.menuNewPnrCallback}
+                        menuLogToBrowserCallback={this.menuLogToBrowserCallback}
+                        increaseCrsVersionNumberCallback={this.increaseCrsVersionNumberCallback}
+                        addEotOriginatorCallback={this.addEotOriginatorCallback}
+                        addRespoCallback={this.addRespoCallback}
+                        addGroupCallback={this.addGroupCallback}
+                        addTourCodeCallback={this.addTourCodeCallback}
+                        clearPnrKeysCallback={this.clearPnrKeysCallback}
+                        clearNamesCallback={this.clearNamesCallback}
+                        clearSegmentsCallback={this.clearSegmentsCallback}
+                        clearOsisCallback={this.clearOsisCallback}
+                        clearRemarksCallback={this.clearRemarksCallback}
+                        clearContactsCallback={this.clearContactsCallback}
+                        clearAddressesCallback={this.clearAddressesCallback}
+                        clearSsrsCallback={this.clearSsrsCallback}
+                        clearSksCallback={this.clearSksCallback}
+                        clearTicketsCallback={this.clearTicketsCallback}
+                        clearFormOfPaymentsCallback={this.clearFormOfPaymentsCallback}
+                        clearDcsDataListCallback={this.clearDcsDataListCallback}
                     />
+                    <main role='main' className='container'>
+                        <ShowAlerts
+                            data={this.state.alerts}
+                        />
 
-                    <PnrEditor
-                        data={this.state.pnr}
-                    />
+                        <PnrEditor
+                            data={this.state.pnr}
+                        />
 
-                    {/*
+                        {/*
 
                     <PnrViewer
                         data={this.state.pnr}
@@ -81,16 +79,17 @@ export default class AppContainer extends React.Component {
 
                     */}
 
-                    <SaveModal modalCallback={this.menuSaveAsCallback} />
-                    <LoadModal modalCallback={this.menuLoadFromCallback} />
-                </main>
+                        <SaveModal modalCallback={this.menuSaveAsCallback} />
+                        <LoadModal modalCallback={this.menuLoadFromCallback} />
+                    </main>
 
-                <footer className="footer text-center p-3 border-top">
-                    <SelectLanguage availableLanguages={this.state.i18n.availableLanguages}
-                        setLanguage={this.setLanguage}
-                    />
-                </footer>
-            </div>
+                    <footer className="footer text-center p-3 border-top">
+                        <SelectLanguage availableLanguages={this.state.i18n.availableLanguages}
+                            setLanguage={this.setLanguage}
+                        />
+                    </footer>
+                </div>
+            </i18nContext.Provider>
         );
     }
 

@@ -24,3 +24,6 @@ TODO list:
     - general input készítése
     - pnr struktúra editálása
 
+
+zászló ikonok:  
+    https://www.iconfinder.com/iconsets/flags_gosquared
