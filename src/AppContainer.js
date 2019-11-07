@@ -34,45 +34,40 @@ export default class AppContainer extends React.Component {
         this.menuSaveAsCallback = this.menuSaveAsCallback.bind(this);
         this.createAlert = this.createAlert.bind(this);
 
-        this.myObj = {
-            updateCallback: () => console.log('update')
+        this.navbarCallbacks = {
+            isPnrEmpty: this.isPnrEmptyCallback,
+            menuNewPnrCallback: this.menuNewPnrCallback,
+            menuLogToBrowserCallback: this.menuLogToBrowserCallback,
+            increaseCrsVersionNumberCallback: this.increaseCrsVersionNumberCallback,
+            addEotOriginatorCallback: this.addEotOriginatorCallback,
+            addRespoCallback: this.addRespoCallback,
+            addGroupCallback: this.addGroupCallback,
+            addTourCodeCallback: this.addTourCodeCallback,
+            clearPnrKeysCallback: this.clearPnrKeysCallback,
+            clearNamesCallback: this.clearNamesCallback,
+            clearSegmentsCallback: this.clearSegmentsCallback,
+            clearOsisCallback: this.clearOsisCallback,
+            clearRemarksCallback: this.clearRemarksCallback,
+            clearContactsCallback: this.clearContactsCallback,
+            clearAddressesCallback: this.clearAddressesCallback,
+            clearSsrsCallback: this.clearSsrsCallback,
+            clearSksCallback: this.clearSksCallback,
+            clearTicketsCallback: this.clearTicketsCallback,
+            clearFormOfPaymentsCallback: this.clearFormOfPaymentsCallback,
+            clearDcsDataListCallback: this.clearDcsDataListCallback
+        };
+
+        this.pnrEditorCallbacks = {
+            updatePnrValue: this.updatePnrValue
         };
     }
-
-    updatePnr(id, value) {
-        this.setState();
-    }
-
-    // TODO callback pattern-re generalt irni, paramtereryni
-    // ay ossyes callbacket osszefogni egz obj-ba
-
 
     render() {
         return (
             <i18nContext.Provider value={this.state.i18n.dictionary}>
                 <div className='App'>
                     <MainNavbar
-                        { ...this.myObj }
-                        isPnrEmpty={this.state.pnr == null ? true : false}
-                        menuNewCallback={this.menuNewPnrCallback}
-                        menuLogToBrowserCallback={this.menuLogToBrowserCallback}
-                        increaseCrsVersionNumberCallback={this.increaseCrsVersionNumberCallback}
-                        addEotOriginatorCallback={this.addEotOriginatorCallback}
-                        addRespoCallback={this.addRespoCallback}
-                        addGroupCallback={this.addGroupCallback}
-                        addTourCodeCallback={this.addTourCodeCallback}
-                        clearPnrKeysCallback={this.clearPnrKeysCallback}
-                        clearNamesCallback={this.clearNamesCallback}
-                        clearSegmentsCallback={this.clearSegmentsCallback}
-                        clearOsisCallback={this.clearOsisCallback}
-                        clearRemarksCallback={this.clearRemarksCallback}
-                        clearContactsCallback={this.clearContactsCallback}
-                        clearAddressesCallback={this.clearAddressesCallback}
-                        clearSsrsCallback={this.clearSsrsCallback}
-                        clearSksCallback={this.clearSksCallback}
-                        clearTicketsCallback={this.clearTicketsCallback}
-                        clearFormOfPaymentsCallback={this.clearFormOfPaymentsCallback}
-                        clearDcsDataListCallback={this.clearDcsDataListCallback}
+                        {...this.navbarCallbacks}
                     />
                     <main role='main' className='container'>
                         <ShowAlerts
@@ -81,17 +76,15 @@ export default class AppContainer extends React.Component {
 
                         <PnrEditor
                             data={this.state.pnr}
-                            updatePnr={this.updatePnr}
+                            {...this.pnrEditorCallbacks}
                         />
 
                         {/*
-
-                    <PnrViewer
-                        data={this.state.pnr}
-                        removeElementCallback={this.removeElementCallback}
-                    />
-
-                    */}
+                        <PnrViewer
+                            data={this.state.pnr}
+                            removeElementCallback={this.removeElementCallback}
+                        />
+                        */}
 
                         <SaveModal modalCallback={this.menuSaveAsCallback} />
                         <LoadModal modalCallback={this.menuLoadFromCallback} />
@@ -105,6 +98,18 @@ export default class AppContainer extends React.Component {
                 </div>
             </i18nContext.Provider>
         );
+    }
+
+    updatePnrValue = (attributeName, newValue) => {
+        // TODO controlled-uncontrolled value error -- VS -- save button and builders?
+        let pnr = this.state.pnr;
+        pnr[attributeName] = newValue;
+
+        this.setState({ pnr: pnr });
+    }
+
+    isPnrEmptyCallback = () => {
+        return this.state.pnr == null ? true : false;
     }
 
     menuLogToBrowserCallback = () => {

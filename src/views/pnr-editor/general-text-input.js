@@ -3,7 +3,6 @@ import React from 'react';
 export default class GeneralInput extends React.Component {
 
     render() {
-        console.log(this.props.updatePnr);
         return (
             <div>
                 {
@@ -20,6 +19,8 @@ export default class GeneralInput extends React.Component {
 
                 <input type="text" className="form-control" id={this.props.elementid}
                     placeholder={this.props.placeholder}
+                    value={this.props.data}
+                    onChange={evt => this.props.updatePnrValue(this.props.label, evt.target.value)}
                 />
 
                 {this.props.small && (<small className="form-text text-muted">{this.props.small}</small>)}
@@ -36,6 +37,8 @@ export default class GeneralInput extends React.Component {
                 <div className="mx-sm-3 mb-2 col">
                     <input type="text" className="form-control" id={this.props.elementid}
                         placeholder={this.props.placeholder}
+                        value={this.props.data}
+                        onChange={evt => this.props.updatePnrValue(this.props.label, evt.target.value)}
                     />
                 </div>
             </div>
