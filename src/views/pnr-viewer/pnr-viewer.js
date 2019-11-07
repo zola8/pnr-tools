@@ -6,7 +6,7 @@ import RenderValueNull from './render-value-null'
 import RenderContent from './render-content'
 import ToggleAllElements from './toggle-all-elements'
 import RenderCollapse from './render-collapse'
-import EmptyPnrPanel from './empty-pnr-panel'
+import EmptyPnrPanel from '../pnr-action-selector/empty-pnr-panel'
 
 
 export default class PnrViewer extends React.Component {

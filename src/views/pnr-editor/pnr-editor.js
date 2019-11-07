@@ -1,12 +1,17 @@
 import React from 'react';
 import FormGroup from './form-group';
-import GeneralTextInput from './general-text-input';
+import GeneralTextInput from './general-text-input-1';
 import i18nContext from '../../i18n/i18n-context';
+import * as PnrOperations from '../../common/pnr-operations';
 
 export default class PnrEditor extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            newPnr: PnrOperations.createEmptyPnrBody()
+        }
 
         this.savePnrBodyClick = this.savePnrBodyClick.bind(this);
         this.pnrBodyAttributes = ["crsId", "recordLocator", "creationDate", "eotDate", "commencePoint", "nonCommercial", "canceled", "operating", "crsVersionNumber"];
@@ -15,7 +20,7 @@ export default class PnrEditor extends React.Component {
     render() {
         return (
             <div>
-                {this.props.data && this.pnrBodyEditor()}
+                {this.pnrBodyEditor()}
             </div>
         )
     }
@@ -28,11 +33,10 @@ export default class PnrEditor extends React.Component {
                         <FormGroup header="PNR body" border="border-info" headerbg="bg-info">
                             {
                                 this.pnrBodyAttributes.map((item, i) =>
-                                    <GeneralTextInput key={'PnrEditor_' + item + '_' + i}
-                                        oneline
+                                    <GeneralTextInput key={'PnrEditor_GeneralTextInput_' + i + '_' + item}
                                         label={item}
-                                        data={this.props.data[item]}
-                                        updatePnrValue={this.props.updatePnrValue}
+                                        data={this.state.newPnr[item]}
+                                        updateInputValue={this.updateInputValue}
                                     />
                                 )
                             }
@@ -40,7 +44,7 @@ export default class PnrEditor extends React.Component {
 
                         <div className="d-flex flex-row-reverse my-4 mr-3">
                             <button type="button" className="btn btn-primary" onClick={this.savePnrBodyClick}>
-                                {i18n.save}
+                                {i18n.button.save}
                             </button>
                         </div>
                     </div>
@@ -49,8 +53,15 @@ export default class PnrEditor extends React.Component {
         )
     }
 
+    updateInputValue = (attributeName, newValue) => {
+        let pnr = this.state.newPnr;
+        pnr[attributeName] = newValue;
+
+        this.setState({ newPnr: pnr });
+    }
+
     savePnrBodyClick = () => {
-        console.log('save....');
+        console.log('save....', this.state.newPnr);
     }
 
 }

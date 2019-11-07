@@ -111,6 +111,20 @@ export function buildPnrBody(rawpnr) {
     return result;
 }
 
+export function createEmptyPnrBody() {
+    return buildPnrBody({
+        "crsId": "",
+        "recordLocator": "",
+        "creationDate": "",
+        "eotDate": "",
+        "commencePoint": "",
+        "nonCommercial": false,
+        "canceled": false,
+        "operating": false,
+        "crsVersionNumber": 0
+    });
+}
+
 export function buildPnrKeys(pnrKeys) {
     let result = [];
 

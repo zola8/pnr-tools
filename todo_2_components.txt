@@ -1,0 +1,77 @@
+===================================
+    General components strategy
+===================================
+
+
+- from SOLID principles:
+    - Single responsibility (our modules)
+    - Open for Extension, Closed for Modification (our modules)
+    - Dependency Inversion (trying to patternize everything with parameters)
+
+
+- constructor needs when:
+    - we want to bind the this keyword
+    - want to use state
+    - want to create "logic" (and don't noise up the template)
+        - like collecting up the callbacks
+        - creating maps
+
+- render:
+    - we must handle nulls and undefined data
+    - we can use contexts
+    - if code base is long -> separate into smaller parts 
+
+
+- Every text should come from i18n properties/context 
+
+-----------------------------------
+
+Data pass via this.props :
+
+    - data      = data binding
+    - label     = labels
+    - header    = header titles 
+
+
+-----------------------------------
+
+Key generation :
+
+    <main component> _ [ <tag> _ ] <index> _ <element name>
+
+    example:
+        PnrEditor_GeneralTextInput_<index>_<label>
+        PnrEditor_GeneralTextInput_0_crsId
+
+
+-----------------------------------
+
+
+    AppContainer
+        - handles the main pnr (state)
+        - no pnr at start (empty-pnr-panel)
+        CHILDREN:
+            - MainNavbar
+            - ShowAlerts
+            - PnrActionSelector
+                - PnrViewer | PnrEditor | EmptyPnrPanel
+            - SaveModal
+            - LoadModal
+            - footer (SelectLanguage)
+
+
+
+    PnrActionSelector
+        states:
+            - Create new PNR    = new PNR body is created + add elements (?) + editor 
+            - Load...           = modal call + view 
+
+
+    PnrEditor
+        - able to create new element(s)
+        - able to order elements
+        - able to edit / save / cancel / null attributes (input fields by type)
+
+
+
+

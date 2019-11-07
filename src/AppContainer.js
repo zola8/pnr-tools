@@ -1,17 +1,19 @@
 import React from 'react';
 import MainNavbar from './views/navbar/main-navbar'
-import PnrViewer from './views/pnr-viewer/pnr-viewer';
-import SaveModal from './views/modal/save-modal';
-import LoadModal from './views/modal/load-modal';
-import rawpnr from './testdata/pnr.json';
-import * as PnrOperations from './common/pnr-operations';
-import { copyTextToClipboard } from './common/clipboard';
-import { IsJsonString } from './common/json-operations';
-import ShowAlerts from './views/alert/show-alerts';
-import PnrEditor from './views/pnr-editor/pnr-editor';
-import SelectLanguage from './views/i18n/select-language';
-import * as i18nOperations from './i18n/i18n-operations';
-import i18nContext from './i18n/i18n-context';
+import ShowAlerts from './views/alert/show-alerts'
+import SaveModal from './views/modal/save-modal'
+import LoadModal from './views/modal/load-modal'
+import * as PnrOperations from './common/pnr-operations'
+import { copyTextToClipboard } from './common/clipboard'
+import { IsJsonString } from './common/json-operations'
+import SelectLanguage from './views/i18n/select-language'
+import * as i18nOperations from './i18n/i18n-operations'
+import i18nContext from './i18n/i18n-context'
+import rawpnr from './testdata/pnr.json'
+import PnrViewer from './views/pnr-viewer/pnr-viewer'
+import PnrEditor from './views/pnr-editor/pnr-editor'
+import PnrActionSelector from './views/pnr-action-selector/pnr-action-selector'
+import EmptyPnrPanel from './views/pnr-action-selector/empty-pnr-panel'
 
 export default class AppContainer extends React.Component {
 
@@ -58,7 +60,6 @@ export default class AppContainer extends React.Component {
         };
 
         this.pnrEditorCallbacks = {
-            updatePnrValue: this.updatePnrValue
         };
     }
 
@@ -74,12 +75,17 @@ export default class AppContainer extends React.Component {
                             data={this.state.alerts}
                         />
 
+                        <PnrActionSelector data={this.state.pnr} />
+
+                        {!this.state.pnr && <EmptyPnrPanel />}
+
+
+                        {/*
                         <PnrEditor
                             data={this.state.pnr}
                             {...this.pnrEditorCallbacks}
                         />
 
-                        {/*
                         <PnrViewer
                             data={this.state.pnr}
                             removeElementCallback={this.removeElementCallback}
@@ -100,14 +106,6 @@ export default class AppContainer extends React.Component {
         );
     }
 
-    updatePnrValue = (attributeName, newValue) => {
-        // TODO controlled-uncontrolled value error -- VS -- save button and builders?
-        let pnr = this.state.pnr;
-        pnr[attributeName] = newValue;
-
-        this.setState({ pnr: pnr });
-    }
-
     isPnrEmptyCallback = () => {
         return this.state.pnr == null ? true : false;
     }
@@ -118,7 +116,7 @@ export default class AppContainer extends React.Component {
 
     menuNewPnrCallback = () => {
         this.setState({
-            pnr: PnrOperations.buildPnr({ 'crsVersionNumber': 1 }),
+            pnr: PnrOperations.buildPnr({ 'crsVersionNumber': 0 }),
             alerts: []
         });
     }
