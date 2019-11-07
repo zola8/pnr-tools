@@ -33,13 +33,26 @@ export default class AppContainer extends React.Component {
         this.menuLoadFromCallback = this.menuLoadFromCallback.bind(this);
         this.menuSaveAsCallback = this.menuSaveAsCallback.bind(this);
         this.createAlert = this.createAlert.bind(this);
+
+        this.myObj = {
+            updateCallback: () => console.log('update')
+        };
     }
+
+    updatePnr(id, value) {
+        this.setState();
+    }
+
+    // TODO callback pattern-re generalt irni, paramtereryni
+    // ay ossyes callbacket osszefogni egz obj-ba
+
 
     render() {
         return (
             <i18nContext.Provider value={this.state.i18n.dictionary}>
                 <div className='App'>
                     <MainNavbar
+                        { ...this.myObj }
                         isPnrEmpty={this.state.pnr == null ? true : false}
                         menuNewCallback={this.menuNewPnrCallback}
                         menuLogToBrowserCallback={this.menuLogToBrowserCallback}
@@ -68,6 +81,7 @@ export default class AppContainer extends React.Component {
 
                         <PnrEditor
                             data={this.state.pnr}
+                            updatePnr={this.updatePnr}
                         />
 
                         {/*

@@ -3,6 +3,7 @@ import React from 'react';
 export default class GeneralInput extends React.Component {
 
     render() {
+        console.log(this.props.updatePnr);
         return (
             <div>
                 {

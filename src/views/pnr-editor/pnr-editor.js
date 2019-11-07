@@ -12,6 +12,9 @@ export default class PnrEditor extends React.Component {
     }
 
     render() {
+
+        console.log(this.props.data);
+
         return (
             <div>
                 {this.pnrBodyEditor()}
@@ -20,6 +23,8 @@ export default class PnrEditor extends React.Component {
     }
 
     pnrBodyEditor = () => {
+        // tombbe stringkent az attr-ok, majd map-en iteralni az inputoknal
+        
         return (
             <i18nContext.Consumer>
                 {i18n => (
@@ -33,7 +38,7 @@ export default class PnrEditor extends React.Component {
                             <GeneralTextInput label="nonCommercial" oneline />
                             <GeneralTextInput label="canceled" oneline />
                             <GeneralTextInput label="operating" oneline />
-                            <GeneralTextInput label="crsVersionNumber" oneline />
+                            <GeneralTextInput label="crsVersionNumber" updatePnr={this.props.updatePnr} oneline />
                         </FormGroup>
 
                         <div className="d-flex flex-row-reverse my-4 mr-3">

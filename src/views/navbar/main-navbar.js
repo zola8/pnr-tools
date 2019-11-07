@@ -3,6 +3,9 @@ import React from 'react';
 export default class MainNavbar extends React.Component {
 
     render() {
+
+        this.props.updateCallback();
+
         return (
             <nav className='navbar navbar-expand-lg navbar-dark bg-dark fixed-top'>
                 <a className='navbar-brand' href='/#'>PNR Tools</a>
