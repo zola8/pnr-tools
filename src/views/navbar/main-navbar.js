@@ -1,4 +1,6 @@
 import React from 'react';
+import * as PnrOperations from '../../common/pnr-operations'
+
 
 export default class MainNavbar extends React.Component {
 
@@ -56,7 +58,7 @@ export default class MainNavbar extends React.Component {
                     <div className="dropdown-divider"></div>
                     <h6 className='dropdown-header'>Object actions</h6>
 
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.addEotOriginatorCallback}>Add / clear eotOriginator</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('eotOriginator', PnrOperations.buildEotOriginator({}))}>Add / clear eotOriginator</a>
                     <a className={'dropdown-item'} href='/#' onClick={this.props.addRespoCallback}>Add / clear respo</a>
                     <a className={'dropdown-item'} href='/#' onClick={this.props.addGroupCallback}>Add / clear group</a>
                     <a className={'dropdown-item'} href='/#' onClick={this.props.addTourCodeCallback}>Add / clear tourCode</a>

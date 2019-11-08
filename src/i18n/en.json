@@ -1,5 +1,15 @@
 {
     "button": {
         "save": "Mentés"
+    },
+    "menu": {
+    },
+    "views": {
+        "PnrActionSelector": {
+            "header": "PNR Actions",
+            "text": "What action should we take?",
+            "new": "Create new PNR",
+            "load": "Load PNR..."
+        }
     }
 }

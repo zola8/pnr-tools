@@ -1,5 +1,15 @@
 {
     "button": {
         "save": "Mentés"
+    },
+    "menu": {
+    },
+    "views": {
+        "PnrActionSelector": {
+            "header": "PNR Műveletek",
+            "text": "Milyen műveletet kellene végrehajtanunk?",
+            "new": "Új PNR létrehozása",
+            "load": "PNR betöltése..."
+        }
     }
 }

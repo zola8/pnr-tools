@@ -35,13 +35,14 @@ export default class AppContainer extends React.Component {
         this.menuLoadFromCallback = this.menuLoadFromCallback.bind(this);
         this.menuSaveAsCallback = this.menuSaveAsCallback.bind(this);
         this.createAlert = this.createAlert.bind(this);
+        this.addPnrElementCallback = this.addPnrElementCallback.bind(this);
 
         this.navbarCallbacks = {
             isPnrEmpty: this.isPnrEmptyCallback,
             menuNewPnrCallback: this.menuNewPnrCallback,
             menuLogToBrowserCallback: this.menuLogToBrowserCallback,
             increaseCrsVersionNumberCallback: this.increaseCrsVersionNumberCallback,
-            addEotOriginatorCallback: this.addEotOriginatorCallback,
+            addPnrElementCallback: this.addPnrElementCallback,
             addRespoCallback: this.addRespoCallback,
             addGroupCallback: this.addGroupCallback,
             addTourCodeCallback: this.addTourCodeCallback,
@@ -75,17 +76,18 @@ export default class AppContainer extends React.Component {
                             data={this.state.alerts}
                         />
 
-                        <PnrActionSelector data={this.state.pnr} />
+                        <PnrActionSelector data={this.state.pnr} {...this.navbarCallbacks} />
 
                         {!this.state.pnr && <EmptyPnrPanel />}
 
+                        {this.state.pnr &&
+                            <PnrEditor
+                                data={this.state.pnr}
+                                {...this.pnrEditorCallbacks}
+                            />
+                        }
 
                         {/*
-                        <PnrEditor
-                            data={this.state.pnr}
-                            {...this.pnrEditorCallbacks}
-                        />
-
                         <PnrViewer
                             data={this.state.pnr}
                             removeElementCallback={this.removeElementCallback}
@@ -165,13 +167,15 @@ export default class AppContainer extends React.Component {
         this.setState({ pnr: pnr });
     }
 
-    addEotOriginatorCallback = () => {
+    addPnrElementCallback = (elementName, value) => {
         let pnr = this.state.pnr;
-        pnr.eotOriginator = PnrOperations.buildEotOriginator({});
+        pnr[elementName] = value;
 
         this.setState({ pnr: pnr });
+
     }
 
+    /*
     addRespoCallback = () => {
         let pnr = this.state.pnr;
         pnr.respo = PnrOperations.buildRespo({});
@@ -276,6 +280,7 @@ export default class AppContainer extends React.Component {
 
         this.setState({ pnr: pnr });
     }
+    */
 
     removeElementCallback = (elementName) => {
         if (!elementName) {
