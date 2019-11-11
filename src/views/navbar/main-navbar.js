@@ -59,25 +59,25 @@ export default class MainNavbar extends React.Component {
                     <h6 className='dropdown-header'>Object actions</h6>
 
                     <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('eotOriginator', PnrOperations.buildEotOriginator({}))}>Add / clear eotOriginator</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.addRespoCallback}>Add / clear respo</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.addGroupCallback}>Add / clear group</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.addTourCodeCallback}>Add / clear tourCode</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('respo', PnrOperations.buildRespo({}))}>Add / clear respo</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('group', PnrOperations.buildGroup({}))}>Add / clear group</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('tourCode', PnrOperations.buildTourCode({}))}>Add / clear tourCode</a>
 
                     <div className="dropdown-divider"></div>
                     <h6 className='dropdown-header'>Array actions</h6>
 
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearPnrKeysCallback}>Add / clear pnrKeys</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearNamesCallback}>Add / clear names</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearSegmentsCallback}>Add / clear segments</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearOsisCallback}>Add / clear osis</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearRemarksCallback}>Add / clear remarks</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearContactsCallback}>Add / clear contacts</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearAddressesCallback}>Add / clear addresses</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearSsrsCallback}>Add / clear ssrs</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearSksCallback}>Add / clear sks</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearTicketsCallback}>Add / clear tickets</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearFormOfPaymentsCallback}>Add / clear formOfPayments</a>
-                    <a className={'dropdown-item'} href='/#' onClick={this.props.clearDcsDataListCallback}>Add / clear dcsDataList</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('pnrKeys', PnrOperations.buildPnrKeys(null))}>Add / clear pnrKeys</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('names', PnrOperations.buildNames(null))}>Add / clear names</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('segments', PnrOperations.buildSegments(null))}>Add / clear segments</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('osis', PnrOperations.buildOsis(null))}>Add / clear osis</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('remarks', PnrOperations.buildRemarks(null))}>Add / clear remarks</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('contacts', PnrOperations.buildContacts(null))}>Add / clear contacts</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('addresses', PnrOperations.buildAddresses(null))}>Add / clear addresses</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('ssrs', PnrOperations.buildSsrs(null))}>Add / clear ssrs</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('sks', PnrOperations.buildSks(null))}>Add / clear sks</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('tickets', PnrOperations.buildTickets(null))}>Add / clear tickets</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('formOfPayments', PnrOperations.buildFormOfPayments(null))}>Add / clear formOfPayments</a>
+                    <a className={'dropdown-item'} href='/#' onClick={() => this.props.addPnrElementCallback('dcsDataList', PnrOperations.buildDcsDataList(null))}>Add / clear dcsDataList</a>
                 </div>
             </li>
         )

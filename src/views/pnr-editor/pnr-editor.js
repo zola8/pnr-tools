@@ -61,7 +61,9 @@ export default class PnrEditor extends React.Component {
     }
 
     savePnrBodyClick = () => {
-        console.log('save....', this.state.newPnr);
+        let pnr = PnrOperations.buildPnr(this.state.newPnr);
+
+        console.log('save....', pnr);
     }
 
 }

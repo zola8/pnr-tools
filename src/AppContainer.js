@@ -42,22 +42,7 @@ export default class AppContainer extends React.Component {
             menuNewPnrCallback: this.menuNewPnrCallback,
             menuLogToBrowserCallback: this.menuLogToBrowserCallback,
             increaseCrsVersionNumberCallback: this.increaseCrsVersionNumberCallback,
-            addPnrElementCallback: this.addPnrElementCallback,
-            addRespoCallback: this.addRespoCallback,
-            addGroupCallback: this.addGroupCallback,
-            addTourCodeCallback: this.addTourCodeCallback,
-            clearPnrKeysCallback: this.clearPnrKeysCallback,
-            clearNamesCallback: this.clearNamesCallback,
-            clearSegmentsCallback: this.clearSegmentsCallback,
-            clearOsisCallback: this.clearOsisCallback,
-            clearRemarksCallback: this.clearRemarksCallback,
-            clearContactsCallback: this.clearContactsCallback,
-            clearAddressesCallback: this.clearAddressesCallback,
-            clearSsrsCallback: this.clearSsrsCallback,
-            clearSksCallback: this.clearSksCallback,
-            clearTicketsCallback: this.clearTicketsCallback,
-            clearFormOfPaymentsCallback: this.clearFormOfPaymentsCallback,
-            clearDcsDataListCallback: this.clearDcsDataListCallback
+            addPnrElementCallback: this.addPnrElementCallback
         };
 
         this.pnrEditorCallbacks = {
@@ -174,113 +159,6 @@ export default class AppContainer extends React.Component {
         this.setState({ pnr: pnr });
 
     }
-
-    /*
-    addRespoCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.respo = PnrOperations.buildRespo({});
-
-        this.setState({ pnr: pnr });
-    }
-
-    addGroupCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.group = PnrOperations.buildGroup({});
-
-        this.setState({ pnr: pnr });
-    }
-
-    addTourCodeCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.tourCode = PnrOperations.buildTourCode({});
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearPnrKeysCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.pnrKeys = PnrOperations.buildPnrKeys(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearNamesCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.names = PnrOperations.buildNames(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearSegmentsCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.segments = PnrOperations.buildSegments(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearOsisCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.osis = PnrOperations.buildOsis(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearRemarksCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.remarks = PnrOperations.buildRemarks(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearContactsCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.contacts = PnrOperations.buildContacts(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearAddressesCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.addresses = PnrOperations.buildAddresses(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearSsrsCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.ssrs = PnrOperations.buildSsrs(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearSksCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.sks = PnrOperations.buildSks(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearTicketsCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.tickets = PnrOperations.buildTickets(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearFormOfPaymentsCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.formOfPayments = PnrOperations.buildFormOfPayments(null);
-
-        this.setState({ pnr: pnr });
-    }
-
-    clearDcsDataListCallback = () => {
-        let pnr = this.state.pnr;
-        pnr.dcsDataList = PnrOperations.buildDcsDataList(null);
-
-        this.setState({ pnr: pnr });
-    }
-    */
 
     removeElementCallback = (elementName) => {
         if (!elementName) {

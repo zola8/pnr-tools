@@ -95,20 +95,18 @@ export function buildPnr(rawpnr) {
     return result;
 }
 
-export function buildPnrBody(rawpnr) {
-    let result = {
-        "crsId": rawpnr.crsId,
-        "recordLocator": rawpnr.recordLocator,
-        "creationDate": rawpnr.creationDate,
-        "eotDate": rawpnr.eotDate,
-        "commencePoint": rawpnr.commencePoint,
-        "nonCommercial": rawpnr.nonCommercial,
-        "canceled": rawpnr.canceled,
-        "operating": rawpnr.operating,
-        "crsVersionNumber": rawpnr.crsVersionNumber
+export function buildPnrBody(newPnr) {
+    return {
+        "crsId": newPnr.crsId,
+        "recordLocator": newPnr.recordLocator,
+        "creationDate": newPnr.creationDate,
+        "eotDate": newPnr.eotDate,
+        "commencePoint": newPnr.commencePoint,
+        "nonCommercial": newPnr.nonCommercial,
+        "canceled": newPnr.canceled,
+        "operating": newPnr.operating,
+        "crsVersionNumber": newPnr.crsVersionNumber
     }
-
-    return result;
 }
 
 export function createEmptyPnrBody() {
