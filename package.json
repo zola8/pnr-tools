@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsontoxml": "^1.0.1",
     "orgchart": "^2.1.6",
     "popper.js": "^1.15.0",
